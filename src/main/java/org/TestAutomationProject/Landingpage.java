@@ -9,9 +9,17 @@ import java.util.List;
 
 public class Landingpage {
 
-    public static final String baseURL = "http://localhost:2342/library/browse";
-    private WebDriver driver;
+    public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/browse";
+    // driver.get("http://localhost:2342/library/browse");
 
+    public static final String ReviewURL = "https://1761-83-229-24-163.ngrok-free.app/library/review";
+    //public static final String ReviewURL = "http://localhost:2342/library/review";
+
+    public static final String ArchiveUrl = "https://1761-83-229-24-163.ngrok-free.app/library/archive";
+    //public static final String ArchiveUrl = "http://localhost:2342/library/archive";
+
+
+    private WebDriver driver;
     private By FavoriteSection = By.cssSelector("a[href='/library/favorites']");
     private By SearchBar = By.xpath("//*[@id='app']//input[@type='text']");
     private By ReloadIcon = By.className("action-reload");
@@ -21,7 +29,6 @@ public class Landingpage {
     private By UploadIcon = By.cssSelector(".v-btn__content .v-icon.material-icons");
     private By UploadIcon2 = By.xpath("//button[contains(@class, 'v-btn') and .//i[contains(@class, 'material-icons') and text()='cloud_upload']]");
     private By dropdownArrow = By.xpath("//i[@class='v-icon material-icons theme--light' and text()='keyboard_arrow_down']");
-
     private By CountryDropDown = By.className("p-countries-select");
     private By CameraDropDown = By.className("p-camera-select");
     private By TimeDropDown = By.className("p-time-select");
@@ -29,17 +36,13 @@ public class Landingpage {
     private By MonthDropDown = By.className("p-month-select");
     private By ColorDropDown = By.className("p-color-select");
     private By CategoryDropDown = By.className("p-category-select");
-
     private By ToggleViewlist = By.xpath("//i[@class='v-icon material-icons theme--light' and text()='view_list']");
     private By ToggleViewcomfy = By.xpath("//i[@class='v-icon material-icons theme--light' and text()='view_comfy']");
     private By ToggleViewcolumn = By.xpath("//i[@class='v-icon material-icons theme--light' and text()='view_column']");
-
     private By SelectImage = By.cssSelector("div[data-index='0'] button.input-select i.select-off");
-
     private By Optionsdrop = By.className("action-menu");
     private By actionshare = By.className("action-share");
     private By cancelshare = By.className("action-cancel");
-
     private By firstImageHover = By.cssSelector("div[data-index='0']");
 
 
@@ -59,12 +62,17 @@ public class Landingpage {
     }
 
     public Review GoToreview() {
-        driver.get("http://localhost:2342/library/review");
+        driver.get(ReviewURL);
         return new Review(driver);
     }
 
     public Archive GoToArchive(){
-        driver.get("http://localhost:2342/library/archive");
+        driver.get(ArchiveUrl);
+        try {
+            Thread.sleep(2000); // Pause for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle the InterruptedException
+        }
         return new Archive(driver);
     }
 
@@ -300,7 +308,7 @@ public class Landingpage {
     }
 
     public Landingpage OpenOptions() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement imageoption1 = wait.until(ExpectedConditions.elementToBeClickable(Optionsdrop));
         imageoption1.click();
         return this;

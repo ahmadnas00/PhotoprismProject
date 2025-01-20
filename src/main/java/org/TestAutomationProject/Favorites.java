@@ -25,7 +25,7 @@ public class Favorites {
 
 
     public Favorites SearchByTitle(String Title) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(SearchBar));
         WebElement searchField = driver.findElement(SearchBar);
         searchField.sendKeys(Title);
@@ -34,9 +34,11 @@ public class Favorites {
     }
 
     public String getFirstImageTitle() {
-        By firstImageTitleLocator = By.cssSelector("button.action-title-edit");
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        By firstImageTitleLocator = By.cssSelector("button.action-title-edit");
         WebElement firstImageTitleElement = wait.until(ExpectedConditions.visibilityOfElementLocated(firstImageTitleLocator));
+
         return firstImageTitleElement.getText();
     }
 

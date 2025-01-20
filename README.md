@@ -1,12 +1,11 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
+    <img src="https://dl.photoprism.app/img/logo/logo-app.svg" align="center" width="30%">
 </p>
 <p align="center"><h1 align="center">PHOTOPRISMPROJECT</h1></p>
 <p align="center">
 	<em>PhotoPrism Ui & API Testing</em>
 </p>
 <p align="center">
-	<img src="https://img.shields.io/github/license/ahmadnas00/PhotoprismProject?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/ahmadnas00/PhotoprismProject?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
 	<img src="https://img.shields.io/github/languages/top/ahmadnas00/PhotoprismProject?style=default&color=0080ff" alt="repo-top-language">
 	<img src="https://img.shields.io/github/languages/count/ahmadnas00/PhotoprismProject?style=default&color=0080ff" alt="repo-language-count">
@@ -38,7 +37,7 @@
 
 ##  Overview
 
-PhotoPrismProject is an open-source project designed to streamline and automate the testing of a photo management application. It offers a comprehensive suite of tests for user interface features, login functionality, and API operations, ensuring consistent performance across different browsers. This project is invaluable for developers and QA engineers seeking to enhance the reliability and robustness of their photo-based web applications.
+PhotoPrism is an AI-powered open-source platform designed for managing, organizing, and sharing photos. It allows users to upload, create albums, and sort images using advanced filters like places, dates, colors, and faces. With options to mark favorites, toggle views, and securely share content,.
 
 ---
 
@@ -59,45 +58,12 @@ PhotoPrismProject is an open-source project designed to streamline and automate 
 
 ---
 
-##  Project Structure
 
-```sh
-└── PhotoprismProject/
-    ├── .github
-    │   └── workflows
-    ├── lib
-    │   ├── commons-lang3-3.11-javadoc.jar
-    │   ├── commons-lang3-3.11-sources.jar
-    │   ├── commons-lang3-3.11.jar
-    │   ├── groovy-4.0.22-javadoc.jar
-    │   ├── groovy-4.0.22-sources.jar
-    │   ├── groovy-4.0.22.jar
-    │   ├── groovy-json-4.0.22-javadoc.jar
-    │   ├── groovy-json-4.0.22-sources.jar
-    │   ├── groovy-json-4.0.22.jar
-    │   ├── json-path-5.5.0-javadoc.jar
-    │   ├── json-path-5.5.0-sources.jar
-    │   ├── json-path-5.5.0.jar
-    │   ├── rest-assured-common-5.5.0-javadoc.jar
-    │   ├── rest-assured-common-5.5.0-sources.jar
-    │   └── rest-assured-common-5.5.0.jar
-    ├── pom.xml
-    └── src
-        ├── main
-        └── test
-```
 
 
 ###  Project Index
 <details open>
 	<summary><b><code>PHOTOPRISMPROJECT/</code></b></summary>
-	<details> <!-- __root__ Submodule -->
-		<summary><b>__root__</b></summary>
-		<blockquote>
-			<table>
-			</table>
-		</blockquote>
-	</details>
 	<details> <!-- .github Submodule -->
 		<summary><b>.github</b></summary>
 		<blockquote>
@@ -236,26 +202,20 @@ Install PhotoprismProject using one of the following methods:
 
 3. Install the project dependencies:
 
-echo 'INSERT-INSTALL-COMMAND-HERE'
+
 
 
 
 ###  Usage
 Run PhotoprismProject using the following command:
-echo 'INSERT-RUN-COMMAND-HERE'
+
 
 ###  Testing
 Run the test suite using the following command:
-echo 'INSERT-TEST-COMMAND-HERE'
+
 
 ---
-##  Project Roadmap
 
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
----
 
 ##  Contributing
 
@@ -300,14 +260,5 @@ echo 'INSERT-TEST-COMMAND-HERE'
 
 ---
 
-##  License
-
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
-
----
-
-##  Acknowledgments
-
-- List any resources, contributors, inspiration, etc. here.
 
 ---

@@ -18,6 +18,10 @@ import java.time.Duration;
 import java.util.Optional;
 
 public class Review {
+
+    public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/browse";
+    // public static final String baseURL = http://localhost:2342/library/browse";
+
     private WebDriver driver;
     private By approveButton = By.cssSelector(".action-approve");
 
@@ -39,7 +43,7 @@ public class Review {
     }
 
     public void GoToLandingPage() {
-        driver.get("http://localhost:2342/library/browse");
+        driver.get(baseURL);
         new Landingpage(driver);
     }
 

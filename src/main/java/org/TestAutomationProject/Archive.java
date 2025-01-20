@@ -15,16 +15,15 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 public class Archive {
     private WebDriver driver;
     private By SearchBar = By.xpath("//*[@id='app']//input[@type='text']");
-
-
-    private By SelectImage = By.cssSelector("div[data-index='0'] button.input-select i.select-off");
-   // private By SelectImage = By.className("select-off");
-
+    //private By SelectImage = By.cssSelector("div[data-index='0'] button.input-select i.select-off");
+   private By SelectImage = By.className("select-off");
+    //private By SelectImage = By.xpath("//i[@class='select-off' and text()='radio_button_off']");
 
     private By RestoreButton = By.className("action-restore");
     private By Optionsdrop = By.className("action-menu");
-
     private By DeleteOption = By.className("action-delete");
+    private By firstImageHover = By.cssSelector("div[data-index='0']");
+
 
     public Archive(WebDriver driver){
         this.driver = driver;
@@ -49,12 +48,11 @@ public class Archive {
         return imageTitleText;
     }
 
-    public Archive HoverFirstImage(){
-        By firstImageLocator = By.cssSelector("div[data-index='0']");
+    public Archive HoverFirstImage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement firstImage = wait.until(ExpectedConditions.visibilityOfElementLocated(firstImageLocator));
-
+        WebElement firstImage = wait.until(ExpectedConditions.elementToBeClickable(firstImageHover));
         Actions actions = new Actions(driver);
+
         actions.moveToElement(firstImage).perform();
         return this;
     }
@@ -68,7 +66,7 @@ public class Archive {
 
     public Archive OpenOptions() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement imageoption1 = wait.until(elementToBeClickable(Optionsdrop));
+        WebElement imageoption1 = wait.until(ExpectedConditions.elementToBeClickable(Optionsdrop));
         imageoption1.click();
         return this;
     }
