@@ -1,4 +1,5 @@
 package TestAutomationProjectTesting;
+import org.TestAutomationProject.DriverFactory;
 import org.TestAutomationProject.Landingpage;
 import org.TestAutomationProject.Review;
 import org.TestAutomationProject.myLoginpage;
@@ -19,7 +20,7 @@ public class FilterAndEditTest {
 
     @BeforeEach
     public void setUpClass() throws MalformedURLException {
-        driver = Review.DriverFactory.getDriver();
+        driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
         // driver.get("http://localhost:2342/library/login");
         driver.get("https://1761-83-229-24-163.ngrok-free.app/library/login");

@@ -1,4 +1,5 @@
 package TestAutomationProjectTesting;
+import org.TestAutomationProject.DriverFactory;
 import org.TestAutomationProject.Landingpage;
 import org.TestAutomationProject.Review;
 import org.TestAutomationProject.myLoginpage;
@@ -24,7 +25,7 @@ public class FeaturesTest {
 
     @BeforeEach
     public void setUpClass() throws MalformedURLException {
-        driver = Review.DriverFactory.getDriver();
+        driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
         driver.get(baseURL);
         loginPage = new myLoginpage(driver);
