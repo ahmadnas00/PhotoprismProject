@@ -47,8 +47,7 @@ public class SmokeTests {
 
     @Test
     public void SearchTitleTest() {
-        home.SearchByTitle(WillShrek);
-        assertTrue(home.getFirstImageTitle().contains(WillShrek));
+        assertTrue(home.SearchByTitle(WillShrek).getFirstImageTitle().contains(WillShrek));
     }
 
     @Test
@@ -63,8 +62,7 @@ public class SmokeTests {
 
     @Test
     public void TestReloadButton(){
-        home.ClickReloadButton();
-        assertTrue(home.IsUpdateToastVisible());
+        assertTrue(home.ClickReloadButton().IsUpdateToastVisible());
     }
 
     @AfterEach

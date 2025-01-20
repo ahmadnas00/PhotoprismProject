@@ -28,10 +28,7 @@
   - [ Installation](#-installation)
   - [ Usage](#-usage)
   - [ Testing](#-testing)
-- [ Project Roadmap](#-project-roadmap)
 - [ Contributing](#-contributing)
-- [ License](#-license)
-- [ Acknowledgments](#-acknowledgments)
 
 ---
 
@@ -201,27 +198,39 @@ Install PhotoprismProject using one of the following methods:
 ```
 
 3. Install the project dependencies:
+```sh
+❯ npm install
+```
 
-
+4. Build the project (if required):
+```sh
+❯ npm run build
+```
 
 
 
 ###  Usage
-Run PhotoprismProject using the following command:
 
+Run PhotoprismProject using the following command:
+```sh
+❯ npm start
+```
+
+Open the application in your browser by visiting:
+```sh
+❯ http://localhost:2342
+```
+(or the port specified in your configuration, e.g., 8080).
 
 ###  Testing
 Run the test suite using the following command:
 
+```sh
+❯ npm test
+```
 
 ---
 
-
-##  Contributing
-
-- **💬 [Join the Discussions](https://github.com/ahmadnas00/PhotoprismProject/discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://github.com/ahmadnas00/PhotoprismProject/issues)**: Submit bugs found or log feature requests for the `PhotoprismProject` project.
-- **💡 [Submit Pull Requests](https://github.com/ahmadnas00/PhotoprismProject/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
 
 <details closed>
 <summary>Contributing Guidelines</summary>
@@ -248,17 +257,7 @@ Run the test suite using the following command:
 8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
 </details>
 
-<details closed>
-<summary>Contributor Graph</summary>
-<br>
-<p align="left">
-   <a href="https://github.com{/ahmadnas00/PhotoprismProject/}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=ahmadnas00/PhotoprismProject">
-   </a>
-</p>
-</details>
 
 ---
-
 
 ---
