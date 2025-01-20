@@ -46,8 +46,6 @@ jobs:
           
           mvn test -Dtest=TestAutomationProjectTesting.ApiTest
           
-          mvn allure:serve
-          
           # Tear down grid if exists
           docker stop grid_container || true
 
