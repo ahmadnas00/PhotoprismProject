@@ -70,7 +70,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          export BROWSER=chrome
+          export BROWSER=firefox
           export GRID_URL=${{ github.event.inputs.grid_url }}
           
           mvn test -Dtest=TestAutomationProjectTesting.SmokeTests
