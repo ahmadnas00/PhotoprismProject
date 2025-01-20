@@ -3,6 +3,6 @@
 ci:
   collect:
     url:
-      - https://1761-83-229-24-163.ngrok-free.app  # change to your app url pages you want to test
+      - http://www.google.com  # change to your app url pages you want to test
   upload:
     target: temporary-public-storage
