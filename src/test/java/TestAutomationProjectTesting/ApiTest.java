@@ -63,7 +63,7 @@ public class ApiTest {
         assertEquals(200, response.statusCode(), "Status code should be 200");
         JsonPath jsonResponse = response.jsonPath();
         List<Map<String, Object>> photos = jsonResponse.getList("$");
-        assertEquals(15, photos.size(), "The size of the photos list should be 14");
+        assertEquals(14, photos.size(), "The size of the photos list should be 14");
     }
 
     @Test
