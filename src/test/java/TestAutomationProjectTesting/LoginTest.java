@@ -28,19 +28,17 @@ public class LoginTest {
     @BeforeEach
     public void setUp() throws MalformedURLException {
         driver = DriverFactory.getDriver();
-       // driver.get("http://localhost:2342/library/login");
+        // LOCAL
+        // driver.get("http://localhost:2342/library/login");
+
+        // Workflow
         driver.get("https://1761-83-229-24-163.ngrok-free.app/library/login");
 
         try {
             Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
             visitSiteButton.click();
-        } catch (TimeoutException err) {
-
-
-            System.out.println("Ngrok warning page was not loaded");
-        }
-
+        } catch (TimeoutException err) {System.out.println("Ngrok warning page was not loaded");}
         loginPage = new myLoginpage(driver);
     }
 

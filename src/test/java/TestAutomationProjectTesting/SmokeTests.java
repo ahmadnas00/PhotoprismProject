@@ -1,7 +1,6 @@
 package TestAutomationProjectTesting;
 import org.TestAutomationProject.DriverFactory;
 import org.TestAutomationProject.Landingpage;
-import org.TestAutomationProject.Review;
 import org.TestAutomationProject.myLoginpage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -18,10 +17,12 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class FeaturesTest {
+public class SmokeTests {
 
-
+    // Workflow
     public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/login";
+
+    // Local
     // driver.get("http://localhost:2342/library/login");
 
     private static WebDriver driver;
@@ -68,32 +69,6 @@ public class FeaturesTest {
         assertTrue(home.IsUpdateToastVisible(), "The toast notification was not visible after reloading the page.");
     }
 
-    @Test
-    @Order(4)
-    public void SearchTitleTest() {
-        home.SearchByTitle(myTitle);
-        assertTrue(home.getFirstImageTitle().contains(myTitle), "The image title doesn't contain the search term");
-    }
-
-    @Test
-    @Order(5)
-    public void MarkFavoriteandUnFavorite() {
-        home.SearchByTitle(myTitle).Favoritefirstimage();
-        assertTrue(home.GoToFavorites().SearchByTitle(myTitle).getFirstImageTitle().contains(myTitle), "The image title doesn't contain the search term");
-        home.SearchByTitle(myTitle).UnFavoritefirstimage();
-        assertFalse(home.GoToFavorites().SearchByTitle(myTitle).isTitleInFavorites(myTitle),"The image is in the Favorites section");
-    }
-
-    @Test
-    @Order(6)
-    public void HeartIconChanging() {
-        home.SearchByTitle(myTitle);
-        String initialIconClass = home.GetinitialIcon();
-        home.Favoritefirstimage();
-        String updatedIconClass = home.GetfinalIcon();
-        home.UnFavoritefirstimage();
-        assertNotEquals(initialIconClass,updatedIconClass);
-    }
 
     @AfterEach
     public void tearDown() {

@@ -1,4 +1,4 @@
-name: UI Features testing
+name: UI Smoke Tests
 
 on:
   workflow_dispatch:

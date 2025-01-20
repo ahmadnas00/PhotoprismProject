@@ -13,12 +13,10 @@ import java.time.Duration;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class Archive {
+
     private WebDriver driver;
     private By SearchBar = By.xpath("//*[@id='app']//input[@type='text']");
-    //private By SelectImage = By.cssSelector("div[data-index='0'] button.input-select i.select-off");
    private By SelectImage = By.className("select-off");
-    //private By SelectImage = By.xpath("//i[@class='select-off' and text()='radio_button_off']");
-
     private By RestoreButton = By.className("action-restore");
     private By Optionsdrop = By.className("action-menu");
     private By DeleteOption = By.className("action-delete");

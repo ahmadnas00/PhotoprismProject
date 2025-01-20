@@ -19,9 +19,9 @@ import java.util.Optional;
 
 public class Review {
 
-    public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/browse";
-    // public static final String baseURL = http://localhost:2342/library/browse";
 
+    public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/browse";
+    // LOCAL :  public static final String baseURL = http://localhost:2342/library/browse";
     private WebDriver driver;
     private By approveButton = By.cssSelector(".action-approve");
 
@@ -36,7 +36,8 @@ public class Review {
 
 
     public Review approveimage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement ApproveButton = wait.until(ExpectedConditions.elementToBeClickable(approveButton));
         ApproveButton.click();
         return this;

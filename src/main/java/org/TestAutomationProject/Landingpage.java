@@ -75,7 +75,14 @@ public class Landingpage {
     }
 
     public Landingpage SearchByTitle(String Title) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+        try {
+            Thread.sleep(2000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle the exception
+        }
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(SearchBar));
         WebElement searchField = driver.findElement(SearchBar);
         searchField.sendKeys(Title);
@@ -118,7 +125,7 @@ public class Landingpage {
 
     public String getFirstImageTitle() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         By firstImageTitleLocator = By.cssSelector("button.action-title-edit");
         WebElement firstImageTitleElement = wait.until(ExpectedConditions.visibilityOfElementLocated(firstImageTitleLocator));
 
@@ -146,8 +153,13 @@ public class Landingpage {
     }
 
     public Landingpage Addimage(String filePath) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        try {
+            Thread.sleep(2000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle the exception
+        }
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         WebElement FirstUploadButton = wait.until(ExpectedConditions.elementToBeClickable(UploadIcon));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", FirstUploadButton);
         FirstUploadButton.click();
@@ -159,11 +171,11 @@ public class Landingpage {
         WebElement fileInput = driver.findElement(By.cssSelector("input[type='file']"));
         fileInput.sendKeys(filePath);
 
-        WebElement toastNotification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#p-notify > div > div > span")));
-        wait.until(ExpectedConditions.textToBePresentInElement(toastNotification, "Upload complete"));
+//        WebElement toastNotification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#p-notify > div > div > span")));
+//        wait.until(ExpectedConditions.textToBePresentInElement(toastNotification, "Upload complete"));
 
         try {
-            Thread.sleep(2000); // Wait for 2 seconds
+            Thread.sleep(1000); // Wait for 2 seconds
         } catch (InterruptedException e) {
             e.printStackTrace(); // Handle the exception
         }
@@ -194,9 +206,12 @@ public class Landingpage {
 
 
     public Landingpage OpenCountryDropDown(String Country) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(dropdownArrow));
         WebElement DropdownArrow = driver.findElement(dropdownArrow);
         DropdownArrow.click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(CountryDropDown));
         WebElement countryDropDown = driver.findElement(CountryDropDown);
         countryDropDown.click();

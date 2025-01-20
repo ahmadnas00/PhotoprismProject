@@ -22,8 +22,6 @@ public class Favorites {
     }
 
 
-
-
     public Favorites SearchByTitle(String Title) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(SearchBar));
