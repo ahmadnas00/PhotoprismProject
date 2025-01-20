@@ -28,7 +28,6 @@ public class SmokeTests {
     private static WebDriver driver;
     private static myLoginpage loginPage;
     private static Landingpage home;
-    private static String myTitle = "Will Shrek";
     private String filePath = "C:\\Users\\an833\\Downloads\\random1.jpg";
 
     @BeforeEach
@@ -41,15 +40,12 @@ public class SmokeTests {
             Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
             visitSiteButton.click();
-        } catch (TimeoutException err) {
-            System.out.println("Ngrok warning page was not loaded");
-        }
+        } catch (TimeoutException err) {System.out.println("Ngrok warning page was not loaded");}
         loginPage = new myLoginpage(driver);
         home = loginPage.loginAsValidUser("admin", "insecure");
     }
 
     @Test
-    @Order(1)
     public void TestUploadadnApproveImage(){
         home.Addimage(filePath);
         home.GoToreview().approveimage().GoToLandingPage();
@@ -57,18 +53,15 @@ public class SmokeTests {
     }
 
     @Test
-    @Order(2)
     public void TestGalleryEmpty() {
         assertFalse(home.isGalleryEmpty());
     }
 
     @Test
-    @Order(3)
     public void TestReloadButton(){
         home.ClickReloadButton();
         assertTrue(home.IsUpdateToastVisible(), "The toast notification was not visible after reloading the page.");
     }
-
 
     @AfterEach
     public void tearDown() {
