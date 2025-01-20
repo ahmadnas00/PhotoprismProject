@@ -44,7 +44,7 @@ jobs:
           export BROWSER=chrome
           export GRID_URL=${{ github.event.inputs.grid_url }}
           
-          mvn test -Dtest=TestAutomationProjectTesting.FeaturesTest
+          mvn test -Dtest=TestAutomationProjectTesting.SmokeTests
           
           # Tear down grid if exists
           docker stop grid_container || true
@@ -73,7 +73,7 @@ jobs:
           export BROWSER=chrome
           export GRID_URL=${{ github.event.inputs.grid_url }}
           
-          mvn test -Dtest=TestAutomationProjectTesting.FeaturesTest
+          mvn test -Dtest=TestAutomationProjectTesting.SmokeTests
           
           
           # Tear down grid if exists
