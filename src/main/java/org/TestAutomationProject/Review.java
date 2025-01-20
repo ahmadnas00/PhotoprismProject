@@ -37,6 +37,12 @@ public class Review {
 
     public Review approveimage() {
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement ApproveButton = wait.until(ExpectedConditions.elementToBeClickable(approveButton));
         ApproveButton.click();
