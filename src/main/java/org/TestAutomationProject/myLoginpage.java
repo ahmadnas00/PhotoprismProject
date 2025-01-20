@@ -10,17 +10,17 @@ import java.time.Duration;
 public class myLoginpage {
     private WebDriver driver;
 
-    public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/browse";
+    public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/login";
     //public static final String baseURL = "http://localhost:2342/library/browse";
 
     private By emailFieldBy = By.id("auth-username");
     private By passwordFieldBy = By.id("auth-password");
     private By loginButtonBy = By.cssSelector("button.action-confirm.ra-6");
 
+
     public myLoginpage(WebDriver driver) {
         this.driver = driver;
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-
         if (!driver.getCurrentUrl().contains("login")) {
             throw new IllegalStateException("This is not the Login Page. Current page: " + driver.getCurrentUrl());
         }
@@ -38,13 +38,6 @@ public class myLoginpage {
 
 
     public myLoginpage loginInValidUser(String username, String password){
-
-        try {
-            Thread.sleep(10000); // Wait for 10 seconds
-        } catch (InterruptedException e) {
-            e.printStackTrace(); // Handle exception
-        }
-
         driver.findElement(emailFieldBy).sendKeys(username);
         driver.findElement(passwordFieldBy).sendKeys(password);
         driver.findElement(loginButtonBy).click();
@@ -52,14 +45,7 @@ public class myLoginpage {
     }
 
     public boolean isNotLoggedIn(){
-
-        try {
-            Thread.sleep(10000); // Wait for 10 seconds
-        } catch (InterruptedException e) {
-            e.printStackTrace(); // Handle exception
-        }
-
-        return driver.getCurrentUrl().contains("login");
+                return driver.getCurrentUrl().contains("login");
     }
 
 

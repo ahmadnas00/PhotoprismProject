@@ -48,10 +48,8 @@ public class Landingpage {
 
     public Landingpage(WebDriver driver) {
         this.driver = driver;
-        driver.get(baseURL);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.titleIs("AI-Powered Photos App"));
-
     }
 
     public Favorites GoToFavorites() {

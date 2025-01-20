@@ -7,9 +7,16 @@ import org.TestAutomationProject.myLoginpage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,6 +30,17 @@ public class LoginTest {
         driver = DriverFactory.getDriver();
        // driver.get("http://localhost:2342/library/login");
         driver.get("https://1761-83-229-24-163.ngrok-free.app/library/login");
+
+        try {
+            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
+            visitSiteButton.click();
+        } catch (TimeoutException err) {
+
+
+            System.out.println("Ngrok warning page was not loaded");
+        }
+
         loginPage = new myLoginpage(driver);
     }
 
