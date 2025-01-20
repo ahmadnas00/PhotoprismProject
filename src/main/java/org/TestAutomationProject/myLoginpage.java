@@ -27,17 +27,24 @@ public class myLoginpage {
     }
 
     public Landingpage loginAsValidUser(String userName, String password) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe(baseURL));
+
         driver.findElement(emailFieldBy).sendKeys(userName);
         driver.findElement(passwordFieldBy).sendKeys(password);
         driver.findElement(loginButtonBy).click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlToBe(baseURL));
         return new Landingpage(driver);
     }
 
 
     public myLoginpage loginInValidUser(String username, String password){
+
+        try {
+            Thread.sleep(10000); // Wait for 10 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle exception
+        }
+
         driver.findElement(emailFieldBy).sendKeys(username);
         driver.findElement(passwordFieldBy).sendKeys(password);
         driver.findElement(loginButtonBy).click();
@@ -45,6 +52,13 @@ public class myLoginpage {
     }
 
     public boolean isNotLoggedIn(){
+
+        try {
+            Thread.sleep(10000); // Wait for 10 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle exception
+        }
+
         return driver.getCurrentUrl().contains("login");
     }
 

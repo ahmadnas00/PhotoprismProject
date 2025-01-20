@@ -189,6 +189,8 @@ public class Landingpage {
     }
 
     public boolean isLoggedInSuccessfully() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.urlContains("library"));
         return driver.getCurrentUrl().contains("library");
     }
 
