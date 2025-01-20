@@ -21,21 +21,20 @@ public class SmokeTests {
 
     // Workflow
     public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/login";
-
+    private static String Pyramids = "Pyramids of Giza";
+    private static String Egypt = "Egypt";
     // Local
     // driver.get("http://localhost:2342/library/login");
-
+    private static String WillShrek = "Will Shrek";
     private static WebDriver driver;
     private static myLoginpage loginPage;
     private static Landingpage home;
-    private String filePath = "C:\\Users\\an833\\Downloads\\random1.jpg";
 
     @BeforeEach
     public void setUpClass() throws MalformedURLException {
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
         driver.get(baseURL);
-
         try {
             Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
@@ -45,11 +44,16 @@ public class SmokeTests {
         home = loginPage.loginAsValidUser("admin", "insecure");
     }
 
+
     @Test
-    public void TestUploadadnApproveImage(){
-        home.Addimage(filePath);
-        home.GoToreview().approveimage().GoToLandingPage();
-        assertTrue(home.SearchByTitle("Random").getFirstImageTitle().contains("Random"));
+    public void SearchTitleTest() {
+        home.SearchByTitle(WillShrek);
+        assertTrue(home.getFirstImageTitle().contains(WillShrek));
+    }
+
+    @Test
+    public void TestFilterByCity(){
+        assertEquals(Pyramids,home.OpenCountryDropDown(Egypt).getFirstImageTitle());
     }
 
     @Test
@@ -60,7 +64,7 @@ public class SmokeTests {
     @Test
     public void TestReloadButton(){
         home.ClickReloadButton();
-        assertTrue(home.IsUpdateToastVisible(), "The toast notification was not visible after reloading the page.");
+        assertTrue(home.IsUpdateToastVisible());
     }
 
     @AfterEach

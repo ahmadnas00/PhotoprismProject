@@ -15,8 +15,8 @@ public class FilterAndEditTest {
     private static Landingpage home;
     private static String myTitle = "Will Shrek";
     private static String Pyramids = "Pyramids of Giza";
-    private static String Egypt_Country = "Egypt";
     private static String ShoppingCart = "Shoppingcart";
+    private String filePath = "C:\\Users\\an833\\Downloads\\random1.jpg";
 
     @BeforeEach
     public void setUpClass() throws MalformedURLException {
@@ -47,11 +47,6 @@ public class FilterAndEditTest {
         assertTrue(home.ClickToggleView3());
     }
 
-    @Test
-    @Order(3)
-    public void TestFilterByCity(){
-        assertEquals(Pyramids,home.OpenCountryDropDown(Egypt_Country).getFirstImageTitle());
-    }
 
     @Test
     @Order(4)
@@ -103,9 +98,10 @@ public class FilterAndEditTest {
 
     @Test
     @Order(13)
-    public void SearchTitleTest() {
-        home.SearchByTitle(myTitle);
-        assertTrue(home.getFirstImageTitle().contains(myTitle));
+    public void TestUploadadnApproveImage(){
+        home.Addimage(filePath);
+        home.GoToreview().approveimage().GoToLandingPage();
+        assertTrue(home.SearchByTitle("Random").getFirstImageTitle().contains("Random"));
     }
 
     @Test

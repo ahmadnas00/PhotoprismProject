@@ -175,7 +175,7 @@ public class Landingpage {
 //        wait.until(ExpectedConditions.textToBePresentInElement(toastNotification, "Upload complete"));
 
         try {
-            Thread.sleep(40000); // Wait for 2 seconds
+            Thread.sleep(10000); // Wait for 2 seconds
         } catch (InterruptedException e) {
             e.printStackTrace(); // Handle the exception
         }
