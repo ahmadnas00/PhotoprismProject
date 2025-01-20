@@ -1,0 +1,8 @@
+# lighthouse.md
+
+ci:
+  collect:
+    url:
+      - http://www.google.com  # change to your app url pages you want to test
+  upload:
+    target: temporary-public-storage
