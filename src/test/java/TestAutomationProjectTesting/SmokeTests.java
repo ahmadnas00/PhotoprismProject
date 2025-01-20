@@ -45,12 +45,12 @@ public class SmokeTests {
         home = loginPage.loginAsValidUser("admin", "insecure");
     }
 
-//    @Test
-//    public void TestUploadadnApproveImage(){
-//        home.Addimage(filePath);
-//        home.GoToreview().approveimage().GoToLandingPage();
-//        assertTrue(home.SearchByTitle("Random").getFirstImageTitle().contains("Random"));
-//    }
+    @Test
+    public void TestUploadadnApproveImage(){
+        home.Addimage(filePath);
+        home.GoToreview().approveimage().GoToLandingPage();
+        assertTrue(home.SearchByTitle("Random").getFirstImageTitle().contains("Random"));
+    }
 
     @Test
     public void TestGalleryEmpty() {
