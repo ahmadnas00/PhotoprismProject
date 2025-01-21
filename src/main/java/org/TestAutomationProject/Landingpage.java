@@ -9,13 +9,13 @@ import java.util.List;
 
 public class Landingpage {
 
-    public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/browse";
+    public static final String baseURL = "https://70cd-212-199-36-114.ngrok-free.app/library/browse";
     // driver.get("http://localhost:2342/library/browse");
 
-    public static final String ReviewURL = "https://1761-83-229-24-163.ngrok-free.app/library/review";
+    public static final String ReviewURL = "https://70cd-212-199-36-114.ngrok-free.app/library/review";
     //public static final String ReviewURL = "http://localhost:2342/library/review";
 
-    public static final String ArchiveUrl = "https://1761-83-229-24-163.ngrok-free.app/library/archive";
+    public static final String ArchiveUrl = "https://70cd-212-199-36-114.ngrok-free.app/library/archive";
     //public static final String ArchiveUrl = "http://localhost:2342/library/archive";
 
 
@@ -109,6 +109,13 @@ public class Landingpage {
     }
 
     public String GetinitialIcon(){
+
+        try {
+            Thread.sleep(1000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle the exception
+        }
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".input-favorite i")));
         WebElement initialIcon = driver.findElement(By.cssSelector(".input-favorite i"));
@@ -116,12 +123,17 @@ public class Landingpage {
     }
 
     public String GetfinalIcon(){
+
+        try {
+            Thread.sleep(1000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle the exception
+        }
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.cssSelector(".input-favorite i")),"favorite"));
         WebElement finalIcon = driver.findElement(By.cssSelector(".input-favorite i"));
         return finalIcon.getText();
     }
-
 
     public String getFirstImageTitle() {
 
@@ -132,15 +144,12 @@ public class Landingpage {
         return firstImageTitleElement.getText();
     }
 
-
-
     public Landingpage ClickReloadButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         WebElement ReloadButton = wait.until(ExpectedConditions.elementToBeClickable(ReloadIcon));
         ReloadButton.click();
         return this;
     }
-
 
     public boolean IsUpdateToastVisible() {
         try {
@@ -183,16 +192,6 @@ public class Landingpage {
         return this;
     }
 
-    public Landingpage openImage(String imageUrl) {
-        String xpathExpression = "//div[contains(@style, 'background-image: url(\"" + imageUrl + "\")')]";
-        By imageLocator = By.xpath(xpathExpression);
-        WebElement image = driver.findElement(imageLocator);
-        image.click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(imageLocator));
-        return this;
-    }
-
     public boolean isGalleryEmpty() {
         List<WebElement> galleryItems = driver.findElements(By.cssSelector("[data-index]"));
         return galleryItems.isEmpty();
@@ -203,7 +202,6 @@ public class Landingpage {
         wait.until(ExpectedConditions.urlContains("library"));
         return driver.getCurrentUrl().contains("library");
     }
-
 
     public Landingpage OpenCountryDropDown(String Country) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -314,7 +312,6 @@ public class Landingpage {
         return this;
     }
 
-
     public Landingpage select(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement selectButton = wait.until(ExpectedConditions.elementToBeClickable(SelectImage));
@@ -323,12 +320,16 @@ public class Landingpage {
     }
 
     public Landingpage OpenOptions() {
+        try {
+            Thread.sleep(1000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle the exception
+        }
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement imageoption1 = wait.until(ExpectedConditions.elementToBeClickable(Optionsdrop));
         imageoption1.click();
         return this;
     }
-
 
     public Landingpage ClearPick(){
         WebElement pressclose = driver.findElement(By.className("action-clear"));

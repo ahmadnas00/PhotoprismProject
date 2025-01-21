@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SmokeTests {
 
     // Workflow
-    public static final String baseURL = "https://1761-83-229-24-163.ngrok-free.app/library/login";
+    public static final String baseURL = "https://70cd-212-199-36-114.ngrok-free.app/library/login";
     private static String Pyramids = "Pyramids of Giza";
     private static String Egypt = "Egypt";
     // Local
@@ -46,9 +46,7 @@ public class SmokeTests {
 
 
     @Test
-    public void SearchTitleTest() {
-        assertTrue(home.SearchByTitle(WillShrek).getFirstImageTitle().contains(WillShrek));
-    }
+    public void SearchTitleTest() {assertTrue(home.SearchByTitle(WillShrek).getFirstImageTitle().contains(WillShrek));}
 
     @Test
     public void TestFilterByCity(){

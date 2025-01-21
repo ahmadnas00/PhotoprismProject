@@ -16,7 +16,7 @@ public class Archive {
 
     private WebDriver driver;
     private By SearchBar = By.xpath("//*[@id='app']//input[@type='text']");
-   private By SelectImage = By.className("select-off");
+    private By SelectImage = By.className("select-off");
     private By RestoreButton = By.className("action-restore");
     private By Optionsdrop = By.className("action-menu");
     private By DeleteOption = By.className("action-delete");

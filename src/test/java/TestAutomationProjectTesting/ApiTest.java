@@ -33,13 +33,13 @@ public class ApiTest {
 
 
 //  WORKFLOW
-    private String BaseURL1 = "https://1761-83-229-24-163.ngrok-free.app/api/v1/photos";
-    private String URLSearch = "https://1761-83-229-24-163.ngrok-free.app/api/v1/photos?count=120&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=Will&public=true&quality=3";
-    private String URLPreview = "https://1761-83-229-24-163.ngrok-free.app/api/v1/photos/view?count=600&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=&public=true&quality=3";
-    private String URLFILTER = "https://1761-83-229-24-163.ngrok-free.app/api/v1/photos?count=120&offset=0&merged=true&country=sa&camera=0&lens=0&label=&latlng=&year=2025&month=1&color=&order=newest&q=&public=true&quality=3";
-    private String URLArchive = "https://1761-83-229-24-163.ngrok-free.app/api/v1/batch/photos/archive";
-    private String URLPrivate = "https://1761-83-229-24-163.ngrok-free.app/api/v1/batch/photos/private";
-    private String URLRestore = "https://1761-83-229-24-163.ngrok-free.app/api/v1/batch/photos/restore";
+    private String BaseURL1 = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/photos";
+    private String URLSearch = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/photos?count=120&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=Will&public=true&quality=3";
+    private String URLPreview = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/photos/view?count=600&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=&public=true&quality=3";
+    private String URLFILTER = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/photos?count=120&offset=0&merged=true&country=sa&camera=0&lens=0&label=&latlng=&year=2025&month=1&color=&order=newest&q=&public=true&quality=3";
+    private String URLArchive = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/batch/photos/archive";
+    private String URLPrivate = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/batch/photos/private";
+    private String URLRestore = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/batch/photos/restore";
 
 
     private String Token = "032a6580ec98060d740a05aca4d768a60c72668173fbc256";
