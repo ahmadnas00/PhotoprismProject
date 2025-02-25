@@ -9,16 +9,14 @@ import java.util.List;
 
 public class Landingpage {
 
-    public static final String baseURL = "https://70cd-212-199-36-114.ngrok-free.app/library/browse";
-    // driver.get("http://localhost:2342/library/browse");
-
-    public static final String ReviewURL = "https://70cd-212-199-36-114.ngrok-free.app/library/review";
-    //public static final String ReviewURL = "http://localhost:2342/library/review";
-
-    public static final String ArchiveUrl = "https://70cd-212-199-36-114.ngrok-free.app/library/archive";
-    //public static final String ArchiveUrl = "http://localhost:2342/library/archive";
+    public static final String URL = "https://app.localssl.dev/";
+    //public static final String URL = "https://1f7b-89-208-135-106.ngrok-free.app/";
 
 
+    public static final String baseURL = URL + "library/browse";
+    public static final String LoginURL =  URL +  "library/login";
+    public static final String ReviewURL = URL +  "library/review";
+    public static final String ArchiveUrl = URL +  "library/archive";
     private WebDriver driver;
     private By FavoriteSection = By.cssSelector("a[href='/library/favorites']");
     private By SearchBar = By.xpath("//*[@id='app']//input[@type='text']");
@@ -44,6 +42,8 @@ public class Landingpage {
     private By actionshare = By.className("action-share");
     private By cancelshare = By.className("action-cancel");
     private By firstImageHover = By.cssSelector("div[data-index='0']");
+    private By QRButton = By.className("action-qr");
+    private By QRImage = By.cssSelector(".qr-container img");
 
 
     public Landingpage(WebDriver driver) {
@@ -73,6 +73,18 @@ public class Landingpage {
         }
         return new Archive(driver);
     }
+
+    public WebElement GenerateQR(String Title){
+        SearchByTitle(Title).HoverFirstImage().ClickFirstImage();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(QRButton));
+        WebElement MyQRbutton = driver.findElement(QRButton);
+        MyQRbutton.click();
+        WebElement qrImage = wait.until(ExpectedConditions.visibilityOfElementLocated(QRImage));
+
+        return qrImage;
+    }
+
 
     public Landingpage SearchByTitle(String Title) {
 
@@ -307,10 +319,18 @@ public class Landingpage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement firstImage = wait.until(ExpectedConditions.elementToBeClickable(firstImageHover));
         Actions actions = new Actions(driver);
-
         actions.moveToElement(firstImage).perform();
         return this;
     }
+
+    public Landingpage ClickFirstImage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement firstImage = wait.until(ExpectedConditions.elementToBeClickable(firstImageHover));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(firstImage).click().perform(); // Ensure the action is executed
+        return this;
+    }
+
 
     public Landingpage select(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));

@@ -1,6 +1,7 @@
 package TestAutomationProjectTesting;
 import io.restassured.matcher.RestAssuredMatchers.*;
 import io.restassured.path.json.JsonPath;
+import org.TestAutomationProject.Landingpage;
 import org.hamcrest.Matchers.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -21,26 +22,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class ApiTest {
-//    LOCAL
-//    private String BaseURL1 = "http://localhost:2342/api/v1/photos";
-//    private String URLSearch = "http://localhost:2342/api/v1/photos?count=120&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=Will&public=true&quality=3";
-//    private String URLPreview = "http://localhost:2342/api/v1/photos/view?count=600&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=&public=true&quality=3";
-//    private String URLFILTER = "http://localhost:2342/api/v1/photos?count=120&offset=0&merged=true&country=sa&camera=0&lens=0&label=&latlng=&year=2025&month=1&color=&order=newest&q=&public=true&quality=3";
-//    private String URLArchive = "http://localhost:2342/api/v1/batch/photos/archive";
-//    private String URLPrivate = "http://localhost:2342/api/v1/batch/photos/private";
-//    private String URLRestore = "http://localhost:2342/api/v1/batch/photos/restore";
-//
-
-
-//  WORKFLOW
-    private String BaseURL1 = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/photos";
-    private String URLSearch = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/photos?count=120&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=Will&public=true&quality=3";
-    private String URLPreview = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/photos/view?count=600&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=&public=true&quality=3";
-    private String URLFILTER = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/photos?count=120&offset=0&merged=true&country=sa&camera=0&lens=0&label=&latlng=&year=2025&month=1&color=&order=newest&q=&public=true&quality=3";
-    private String URLArchive = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/batch/photos/archive";
-    private String URLPrivate = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/batch/photos/private";
-    private String URLRestore = "https://70cd-212-199-36-114.ngrok-free.app/api/v1/batch/photos/restore";
-
+    private static final String BaseURL1 = Landingpage.URL + "api/v1/photos";
+    private static final String URLSearch = Landingpage.URL + "api/v1/photos?count=120&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=Will&public=true&quality=3";
+    private static final String URLPreview = Landingpage.URL + "api/v1/photos/view?count=600&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=&public=true&quality=3";
+    private static final String URLFILTER = Landingpage.URL + "api/v1/photos?count=120&offset=0&merged=true&country=sa&camera=0&lens=0&label=&latlng=&year=2025&month=1&color=&order=newest&q=&public=true&quality=3";
+    private static final String URLArchive = Landingpage.URL + "api/v1/batch/photos/archive";
+    private static final String URLPrivate = Landingpage.URL + "api/v1/batch/photos/private";
+    private static final String URLRestore = Landingpage.URL + "api/v1/batch/photos/restore";
 
     private String Token = "032a6580ec98060d740a05aca4d768a60c72668173fbc256";
     private String ImageID1 = "psq67z7mnbi77zgy";

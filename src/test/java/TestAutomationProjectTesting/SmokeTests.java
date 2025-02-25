@@ -1,6 +1,7 @@
 package TestAutomationProjectTesting;
 import org.TestAutomationProject.DriverFactory;
 import org.TestAutomationProject.Landingpage;
+import org.TestAutomationProject.QRCodeDecoder;
 import org.TestAutomationProject.myLoginpage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -10,7 +11,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import com.google.zxing.*;
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.time.Duration;
 
@@ -18,13 +28,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SmokeTests {
-
-    // Workflow
-    public static final String baseURL = "https://70cd-212-199-36-114.ngrok-free.app/library/login";
     private static String Pyramids = "Pyramids of Giza";
     private static String Egypt = "Egypt";
-    // Local
-    // driver.get("http://localhost:2342/library/login");
     private static String WillShrek = "Will Shrek";
     private static WebDriver driver;
     private static myLoginpage loginPage;
@@ -34,14 +39,14 @@ public class SmokeTests {
     public void setUpClass() throws MalformedURLException {
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
-        driver.get(baseURL);
+        driver.get(Landingpage.LoginURL);
         try {
-            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
             visitSiteButton.click();
         } catch (TimeoutException err) {System.out.println("Ngrok warning page was not loaded");}
         loginPage = new myLoginpage(driver);
-        home = loginPage.loginAsValidUser("admin", "insecure");
+        home = loginPage.loginAsValidUser("admin", "photoprism");
     }
 
 
@@ -49,7 +54,7 @@ public class SmokeTests {
     public void SearchTitleTest() {assertTrue(home.SearchByTitle(WillShrek).getFirstImageTitle().contains(WillShrek));}
 
     @Test
-    public void TestFilterByCity(){
+    public void TestFilterByCountry(){
         assertEquals(Pyramids,home.OpenCountryDropDown(Egypt).getFirstImageTitle());
     }
 
@@ -61,6 +66,16 @@ public class SmokeTests {
     @Test
     public void TestReloadButton(){
         assertTrue(home.ClickReloadButton().IsUpdateToastVisible());
+    }
+
+    @Test
+    public void TestQRFeature() throws Exception {
+        WebElement qrImage = home.GenerateQR(Pyramids);
+        assertTrue(qrImage.isDisplayed(), "QR Code was not displayed!");
+        String decodedContent = QRCodeDecoder.decodeQRCode(qrImage);
+        assertTrue(decodedContent.startsWith("https://i.imgur.com"), "QR Code content does not start with 'https://i.imgur.com'!");
+        System.out.println("QR Code is displayed and contains the correct URL: " + decodedContent);
+
     }
 
     @AfterEach

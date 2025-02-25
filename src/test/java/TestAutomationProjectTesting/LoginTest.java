@@ -28,14 +28,9 @@ public class LoginTest {
     @BeforeEach
     public void setUp() throws MalformedURLException {
         driver = DriverFactory.getDriver();
-        // LOCAL
-        // driver.get("http://localhost:2342/library/login");
-
-        // Workflow
-        driver.get("https://70cd-212-199-36-114.ngrok-free.app/library/login");
-
+        driver.get(Landingpage.LoginURL);
         try {
-            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
             visitSiteButton.click();
         } catch (TimeoutException err) {System.out.println("Ngrok warning page was not loaded");}
@@ -44,7 +39,7 @@ public class LoginTest {
 
     @Test
     public void TestValidLogin() {
-        Landingpage home = loginPage.loginAsValidUser("admin", "insecure");
+        Landingpage home = loginPage.loginAsValidUser("admin", "photoprism");
         assertTrue(home.isLoggedInSuccessfully());
     }
 

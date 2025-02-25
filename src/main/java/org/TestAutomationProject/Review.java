@@ -20,9 +20,9 @@ import java.util.Optional;
 public class Review {
 
 
-    public static final String baseURL = "https://70cd-212-199-36-114.ngrok-free.app/library/browse";
+    //public static final String baseURL = "https://70cd-212-199-36-114.ngrok-free.app/library/browse";
 
-    // LOCAL :  public static final String baseURL = http://localhost:2342/library/browse";
+    public static final String baseURL = Landingpage.baseURL;
     private WebDriver driver;
     private By approveButton = By.cssSelector(".action-approve");
 
