@@ -11,15 +11,12 @@ import java.io.File;
 
 public class QRCodeDecoder {
     public static String decodeQRCode(WebElement qrImage) throws Exception {
-        // Take a screenshot of the QR code
         File screenshot = qrImage.getScreenshotAs(OutputType.FILE);
         BufferedImage bufferedImage = ImageIO.read(screenshot);
 
-        // Convert image to BinaryBitmap for decoding
         LuminanceSource source = new BufferedImageLuminanceSource(bufferedImage);
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
-        // Decode the QR code
         Result qrResult = new MultiFormatReader().decode(bitmap);
         return qrResult.getText(); // Return the extracted QR content
     }

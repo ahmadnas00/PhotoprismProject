@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Landingpage {
 
-    public static final String URL = "https://app.localssl.dev/";
+    public static final String URL = "http://photoprism:2342/";
     //public static final String URL = "https://1f7b-89-208-135-106.ngrok-free.app/";
 
 

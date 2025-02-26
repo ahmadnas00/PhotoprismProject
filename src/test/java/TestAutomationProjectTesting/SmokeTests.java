@@ -44,7 +44,7 @@ public class SmokeTests {
             Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
             visitSiteButton.click();
-        } catch (TimeoutException err) {System.out.println("Ngrok warning page was not loaded");}
+        } catch (TimeoutException err) {}
         loginPage = new myLoginpage(driver);
         home = loginPage.loginAsValidUser("admin", "photoprism");
     }
@@ -70,12 +70,11 @@ public class SmokeTests {
 
     @Test
     public void TestQRFeature() throws Exception {
-        WebElement qrImage = home.GenerateQR(Pyramids);
+        WebElement qrImage = home.GenerateQR(WillShrek);
         assertTrue(qrImage.isDisplayed(), "QR Code was not displayed!");
         String decodedContent = QRCodeDecoder.decodeQRCode(qrImage);
         assertTrue(decodedContent.startsWith("https://i.imgur.com"), "QR Code content does not start with 'https://i.imgur.com'!");
         System.out.println("QR Code is displayed and contains the correct URL: " + decodedContent);
-
     }
 
     @AfterEach
