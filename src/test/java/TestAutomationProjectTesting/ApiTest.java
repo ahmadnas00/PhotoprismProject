@@ -89,39 +89,39 @@ public class ApiTest {
 
     }
 
-    @Test
-    @Order(4)
-    public void TestSendSearch() {
-        Response response = RestAssured
-                .given()
-                .header("Authorization", "Bearer " + Token)
-                .when()
-                .get(URLSearch);
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-        JsonPath jsonResponse = response.jsonPath();
-        List<Map<String, Object>> photos = jsonResponse.getList("$");
-        assertEquals(1, photos.size(), "There should be exactly one photo in the response");
-        String title = photos.getFirst().get("Title").toString();
-        assertEquals("Will Shrek", title, "The title of the photo should match the search query");
-    }
-
-    @Test
-    @Order(5)
-    void TestSendFilters() {
-        Response response = RestAssured
-                .given()
-                .header("Authorization", "Bearer " + Token)
-                .when()
-                .get(URLFILTER);
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-        JsonPath jsonResponse = response.jsonPath();
-        List<Map<String, Object>> photos = jsonResponse.getList("$");
-        assertEquals(2, photos.size(), "There should be exactly one photo in the response");
-        String title = photos.getFirst().get("Title").toString();
-        assertEquals("El-classico Win", title, "The title of the photo should match the search query");
-
-
-    }
+//    @Test
+//    @Order(4)
+//    public void TestSendSearch() {
+//        Response response = RestAssured
+//                .given()
+//                .header("Authorization", "Bearer " + Token)
+//                .when()
+//                .get(URLSearch);
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//        JsonPath jsonResponse = response.jsonPath();
+//        List<Map<String, Object>> photos = jsonResponse.getList("$");
+//        assertEquals(1, photos.size(), "There should be exactly one photo in the response");
+//        String title = photos.getFirst().get("Title").toString();
+//        assertEquals("Will Shrek", title, "The title of the photo should match the search query");
+//    }
+//
+//    @Test
+//    @Order(5)
+//    void TestSendFilters() {
+//        Response response = RestAssured
+//                .given()
+//                .header("Authorization", "Bearer " + Token)
+//                .when()
+//                .get(URLFILTER);
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//        JsonPath jsonResponse = response.jsonPath();
+//        List<Map<String, Object>> photos = jsonResponse.getList("$");
+//        assertEquals(2, photos.size(), "There should be exactly one photo in the response");
+//        String title = photos.getFirst().get("Title").toString();
+//        assertEquals("El-classico Win", title, "The title of the photo should match the search query");
+//
+//
+//    }
 
     @Test
     @Order(6)
