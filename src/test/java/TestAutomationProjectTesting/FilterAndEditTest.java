@@ -21,6 +21,7 @@ public class FilterAndEditTest {
     private static myLoginpage loginPage;
     private static Landingpage home;
     private String filePath = "C:\\Users\\an833\\Downloads\\random1.jpg";
+    private static String ImgName = "Zebra";
 
     @BeforeAll
     public static void setUpData()throws MalformedURLException {
@@ -74,6 +75,10 @@ public class FilterAndEditTest {
         assertTrue(home.ClickToggleView2());
         assertTrue(home.ClickToggleView3());
     }
+
+    @Test
+    @Order(3)
+    public void SearchTitleTest() {assertTrue(home.SearchByTitle(ImgName).getFirstImageTitle().contains(ImgName));}
 
 
     @Test

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SmokeTests {
-    private static String Pyramids = "Pyramids of Giza";
     private static String ImgName = "Zebra";
     private static String ImgName2 = "Chameleon / Saint-Paul / 2015";
     private static WebDriver driver;
@@ -72,8 +71,6 @@ public class SmokeTests {
         home = loginPage.loginAsValidUser("admin", "photoprism");
     }
 
-    @Test
-    public void SearchTitleTest() {assertTrue(home.SearchByTitle(ImgName).getFirstImageTitle().contains(ImgName));}
 
     @Test
     public void TestFilterByCountry(){
