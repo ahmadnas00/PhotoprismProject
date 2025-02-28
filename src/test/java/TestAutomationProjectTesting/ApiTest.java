@@ -23,16 +23,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ApiTest {
     private static final String BaseURL1 = Landingpage.URL + "api/v1/photos";
-    private static final String URLSearch = Landingpage.URL + "api/v1/photos?count=120&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=Will&public=true&quality=3";
     private static final String URLPreview = Landingpage.URL + "api/v1/photos/view?count=600&offset=0&merged=true&country=&camera=0&lens=0&label=&latlng=&year=0&month=0&color=&order=newest&q=&public=true&quality=3";
-    private static final String URLFILTER = Landingpage.URL + "api/v1/photos?count=120&offset=0&merged=true&country=sa&camera=0&lens=0&label=&latlng=&year=2025&month=1&color=&order=newest&q=&public=true&quality=3";
     private static final String URLArchive = Landingpage.URL + "api/v1/batch/photos/archive";
     private static final String URLPrivate = Landingpage.URL + "api/v1/batch/photos/private";
     private static final String URLRestore = Landingpage.URL + "api/v1/batch/photos/restore";
-
-    private String Token = "032a6580ec98060d740a05aca4d768a60c72668173fbc256";
-    private String ImageID1 = "psq67z7mnbi77zgy";
-
+    private String Token = "3f133532dde495a728148069c7a78768bd7914f8343b2cb1";
+    private String ImageID1 = "psse85db4e1t1du6";
 
     @BeforeEach
     public void setup() {
@@ -51,7 +47,7 @@ public class ApiTest {
         assertEquals(200, response.statusCode(), "Status code should be 200");
         JsonPath jsonResponse = response.jsonPath();
         List<Map<String, Object>> photos = jsonResponse.getList("$");
-        assertEquals(14, photos.size(), "The size of the photos list should be 14");
+        assertEquals(9, photos.size(), "The size of the photos list should be 9");
     }
 
     @Test
@@ -89,42 +85,8 @@ public class ApiTest {
 
     }
 
-//    @Test
-//    @Order(4)
-//    public void TestSendSearch() {
-//        Response response = RestAssured
-//                .given()
-//                .header("Authorization", "Bearer " + Token)
-//                .when()
-//                .get(URLSearch);
-//        assertEquals(200, response.statusCode(), "Status code should be 200");
-//        JsonPath jsonResponse = response.jsonPath();
-//        List<Map<String, Object>> photos = jsonResponse.getList("$");
-//        assertEquals(1, photos.size(), "There should be exactly one photo in the response");
-//        String title = photos.getFirst().get("Title").toString();
-//        assertEquals("Will Shrek", title, "The title of the photo should match the search query");
-//    }
-//
-//    @Test
-//    @Order(5)
-//    void TestSendFilters() {
-//        Response response = RestAssured
-//                .given()
-//                .header("Authorization", "Bearer " + Token)
-//                .when()
-//                .get(URLFILTER);
-//        assertEquals(200, response.statusCode(), "Status code should be 200");
-//        JsonPath jsonResponse = response.jsonPath();
-//        List<Map<String, Object>> photos = jsonResponse.getList("$");
-//        assertEquals(2, photos.size(), "There should be exactly one photo in the response");
-//        String title = photos.getFirst().get("Title").toString();
-//        assertEquals("El-classico Win", title, "The title of the photo should match the search query");
-//
-//
-//    }
-
     @Test
-    @Order(6)
+    @Order(4)
     public void TestPrivateImage() {
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("photos", new String[]{ImageID1});
@@ -145,7 +107,7 @@ public class ApiTest {
     }
 
     @Test
-    @Order(7)
+    @Order(5)
     public void TestUnprivateImage() {
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("photos", new String[]{ImageID1});
@@ -167,7 +129,7 @@ public class ApiTest {
     }
 
     @Test
-    @Order(8)
+    @Order(6)
     public void TestSendToArchive() {
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("photos", new String[]{ImageID1});
@@ -186,7 +148,7 @@ public class ApiTest {
     }
 
     @Test
-    @Order(9)
+    @Order(7)
     public void TestRestoreFromArchive() {
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("photos", new String[]{ImageID1});
