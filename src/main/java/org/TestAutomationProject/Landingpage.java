@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Landingpage {
 
-    public static final String URL = "http://photoprism:2342/";
+    public static final String URL = "http://localhost:2342/";
     //public static final String URL = "https://1f7b-89-208-135-106.ngrok-free.app/";
 
 
@@ -17,6 +17,8 @@ public class Landingpage {
     public static final String LoginURL =  URL +  "library/login";
     public static final String ReviewURL = URL +  "library/review";
     public static final String ArchiveUrl = URL +  "library/archive";
+    public static final String LibraryURL = URL + "library/index";
+
     private WebDriver driver;
     private By FavoriteSection = By.cssSelector("a[href='/library/favorites']");
     private By SearchBar = By.xpath("//*[@id='app']//input[@type='text']");
@@ -73,6 +75,19 @@ public class Landingpage {
         }
         return new Archive(driver);
     }
+
+    public Library GoToLibrary(){
+        driver.get(LibraryURL);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return new Library(driver);
+    }
+
+
+
 
     public WebElement GenerateQR(String Title){
         SearchByTitle(Title).HoverFirstImage().ClickFirstImage();

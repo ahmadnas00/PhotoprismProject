@@ -1,8 +1,5 @@
 package TestAutomationProjectTesting;
-import org.TestAutomationProject.DriverFactory;
-import org.TestAutomationProject.Landingpage;
-import org.TestAutomationProject.QRCodeDecoder;
-import org.TestAutomationProject.myLoginpage;
+import org.TestAutomationProject.*;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -29,14 +26,40 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SmokeTests {
     private static String Pyramids = "Pyramids of Giza";
-    private static String Egypt = "Egypt";
-    private static String WillShrek = "Will Shrek";
+    private static String ImgName = "Zebra";
+    private static String ImgName2 = "Chameleon / Saint-Paul / 2015";
     private static WebDriver driver;
     private static myLoginpage loginPage;
+    private static Library mylibrary;
+
     private static Landingpage home;
 
+    @BeforeAll
+    public static void setUpData()throws MalformedURLException {
+        driver = DriverFactory.getDriver();
+        driver.manage().window().maximize();
+        driver.get(Landingpage.LoginURL);
+        try {
+            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
+            visitSiteButton.click();
+        } catch (TimeoutException err) {}
+        loginPage = new myLoginpage(driver);
+        home = loginPage.loginAsValidUser("admin", "photoprism");
+
+        try {
+            Thread.sleep(2000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle the exception
+        }
+        driver.get(Landingpage.LibraryURL);
+        mylibrary = new Library(driver);
+        mylibrary.StartIndexing();
+        driver.quit();
+    }
+
     @BeforeEach
-    public void setUpClass() throws MalformedURLException {
+    public void setLogin() throws MalformedURLException {
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
         driver.get(Landingpage.LoginURL);
@@ -49,13 +72,17 @@ public class SmokeTests {
         home = loginPage.loginAsValidUser("admin", "photoprism");
     }
 
-
     @Test
-    public void SearchTitleTest() {assertTrue(home.SearchByTitle(WillShrek).getFirstImageTitle().contains(WillShrek));}
+    public void SearchTitleTest() {assertTrue(home.SearchByTitle(ImgName).getFirstImageTitle().contains(ImgName));}
 
     @Test
     public void TestFilterByCountry(){
-        assertEquals(Pyramids,home.OpenCountryDropDown(Egypt).getFirstImageTitle());
+        assertEquals(ImgName2,home.OpenCountryDropDown("France").getFirstImageTitle());
+    }
+
+    @Test
+    public void TestFilterByCategory(){
+        assertEquals(ImgName2,home.OpenCategoryDropDown("Reptile").getFirstImageTitle());
     }
 
     @Test
@@ -70,7 +97,7 @@ public class SmokeTests {
 
     @Test
     public void TestQRFeature() throws Exception {
-        WebElement qrImage = home.GenerateQR(WillShrek);
+        WebElement qrImage = home.GenerateQR(ImgName);
         assertTrue(qrImage.isDisplayed(), "QR Code was not displayed!");
         String decodedContent = QRCodeDecoder.decodeQRCode(qrImage);
         assertTrue(decodedContent.startsWith("https://i.imgur.com"), "QR Code content does not start with 'https://i.imgur.com'!");

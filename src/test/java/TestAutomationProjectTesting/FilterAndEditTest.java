@@ -1,8 +1,5 @@
 package TestAutomationProjectTesting;
-import org.TestAutomationProject.DriverFactory;
-import org.TestAutomationProject.Landingpage;
-import org.TestAutomationProject.Review;
-import org.TestAutomationProject.myLoginpage;
+import org.TestAutomationProject.*;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -20,12 +17,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FilterAndEditTest {
     private static WebDriver driver;
+    private static Library mylibrary;
     private static myLoginpage loginPage;
     private static Landingpage home;
-    private static String myTitle = "Will Shrek";
-    private static String Pyramids = "Pyramids of Giza";
-    private static String ShoppingCart = "Shoppingcart";
     private String filePath = "C:\\Users\\an833\\Downloads\\random1.jpg";
+
+    @BeforeAll
+    public static void setUpData()throws MalformedURLException {
+        driver = DriverFactory.getDriver();
+        driver.manage().window().maximize();
+        driver.get(Landingpage.LoginURL);
+        try {
+            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
+            visitSiteButton.click();
+        } catch (TimeoutException err) {}
+        loginPage = new myLoginpage(driver);
+        home = loginPage.loginAsValidUser("admin", "photoprism");
+
+        try {
+            Thread.sleep(2000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle the exception
+        }
+        driver.get(Landingpage.LibraryURL);
+        mylibrary = new Library(driver);
+        mylibrary.StartIndexing();
+        driver.quit();
+    }
 
     @BeforeEach
     public void setUpClass() throws MalformedURLException {
@@ -38,14 +57,14 @@ public class FilterAndEditTest {
             visitSiteButton.click();
         } catch (TimeoutException err) {System.out.println("Ngrok warning page was not loaded");}
         loginPage = new myLoginpage(driver);
-        home = loginPage.loginAsValidUser("admin", "insecure");
+        home = loginPage.loginAsValidUser("admin", "photoprism");
     }
 
     @Test
     @Order(1)
     public void TestSendToArchive(){
-        home.SearchByTitle(ShoppingCart).HoverFirstImage().select().OpenOptions().SendToArchive();
-        assertEquals(ShoppingCart,home.GoToArchive().SearchByTitle(ShoppingCart).getFirstImageTitle());
+        home.SearchByTitle("Unknown").HoverFirstImage().select().OpenOptions().SendToArchive();
+        assertEquals("Unknown",home.GoToArchive().SearchByTitle("Unknown").getFirstImageTitle());
     }
 
     @Test
@@ -59,54 +78,48 @@ public class FilterAndEditTest {
 
     @Test
     @Order(4)
-    public void TestFilterByYear(){assertEquals(Pyramids,home.OpenYearDropDown("2017").getFirstImageTitle());}
+    public void TestFilterByYear(){assertEquals("Unknown",home.OpenYearDropDown("2017").getFirstImageTitle());}
 
     @Test
     @Order(5)
-    public void TestFilterByCamera(){assertEquals(ShoppingCart,home.OpenCameraDropDown("Canon EOS R5").getFirstImageTitle());
+    public void TestFilterByCamera(){assertEquals("Unknown",home.OpenCameraDropDown("Apple iphone SE").getFirstImageTitle());
     }
 
     @Test
     @Order(6)
-    public void TestFilterByMonth(){assertEquals(ShoppingCart,home.OpenMonthDropDown("February").getFirstImageTitle());}
+    public void TestFilterByMonth(){assertEquals("Botanical Garden / Berlin / 2013",home.OpenMonthDropDown("June").getFirstImageTitle());}
 
     @Test
     @Order(7)
     public void TestFilterByColor(){
-        assertEquals("El-classico Win",home.OpenColorDropDown("Purple").getFirstImageTitle());
+        assertEquals("Lawnwood Snake Sanctuary / George / 2013",home.OpenColorDropDown("Gold").getFirstImageTitle());
     }
 
     @Test
     @Order(8)
-    public void TestFilterByCategory(){
-        assertEquals("Beautiful colorful bird",home.OpenCategoryDropDown("Animal").getFirstImageTitle());
+    public void TestFilterByUploadTime(){
+        assertEquals("Unknown",home.OpenTimeDropDown("Newest First").getFirstImageTitle());
     }
 
     @Test
     @Order(9)
-    public void TestFilterByUploadTime(){
-        assertEquals(myTitle,home.OpenTimeDropDown("Newest First").getFirstImageTitle());
-    }
+    public void TestImageSelect(){home.SearchByTitle("Unknown").HoverFirstImage().select();}
 
     @Test
     @Order(10)
-    public void TestImageSelect(){home.SearchByTitle(ShoppingCart).HoverFirstImage().select();}
-
-    @Test
-    @Order(11)
     public void TestImageUnselect(){
-        home.SearchByTitle(ShoppingCart).HoverFirstImage().select().OpenOptions().ClearPick();
+        home.SearchByTitle("Unknown").HoverFirstImage().select().OpenOptions().ClearPick();
     }
 
     @Test
-    @Order(12)
+    @Order(11)
     public void TestImageShareCancel(){
-        home.SearchByTitle(ShoppingCart).HoverFirstImage().select();
+        home.SearchByTitle("Unknown").HoverFirstImage().select();
         home.OpenOptions().share().sharecancel();
     }
 
     @Test
-    @Order(13)
+    @Order(12)
     public void TestUploadadnApproveImage(){
         home.Addimage(filePath);
         home.GoToreview().approveimage().GoToLandingPage();
@@ -114,18 +127,18 @@ public class FilterAndEditTest {
     }
 
     @Test
-    @Order(14)
+    @Order(13)
     public void MarkFavoriteandUnFavorite() {
-        home.SearchByTitle(myTitle).Favoritefirstimage();
-        assertTrue(home.GoToFavorites().SearchByTitle(myTitle).getFirstImageTitle().contains(myTitle), "The image title doesn't contain the search term");
-        home.SearchByTitle(myTitle).UnFavoritefirstimage();
-        assertFalse(home.GoToFavorites().SearchByTitle(myTitle).isTitleInFavorites(myTitle),"The image is in the Favorites section");
+        home.SearchByTitle("Unknown").Favoritefirstimage();
+        assertTrue(home.GoToFavorites().SearchByTitle("Unknown").getFirstImageTitle().contains("Unknown"), "The image title doesn't contain the search term");
+        home.SearchByTitle("Unknown").UnFavoritefirstimage();
+        assertFalse(home.GoToFavorites().SearchByTitle("Unknown").isTitleInFavorites("Unknown"),"The image is in the Favorites section");
     }
 
     @Test
-    @Order(15)
+    @Order(14)
     public void HeartIconChanging() {
-        home.SearchByTitle(myTitle);
+        home.SearchByTitle("Unknown");
         String initialIconClass = home.GetinitialIcon();
         home.Favoritefirstimage();
         String updatedIconClass = home.GetfinalIcon();
