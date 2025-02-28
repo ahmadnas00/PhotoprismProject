@@ -27,8 +27,8 @@ public class ApiTest {
     private static final String URLArchive = Landingpage.URL + "api/v1/batch/photos/archive";
     private static final String URLPrivate = Landingpage.URL + "api/v1/batch/photos/private";
     private static final String URLRestore = Landingpage.URL + "api/v1/batch/photos/restore";
-    private String Token = "3f133532dde495a728148069c7a78768bd7914f8343b2cb1";
-    private String ImageID1 = "psse85db4e1t1du6";
+    private String Token = "ec0d45f3cc2e7dfe5c0fd9117ecc09062c14ba8841c93b41";
+    private String ImageID1 = "psseqaurfd1jd4z0";
 
     @BeforeEach
     public void setup() {
