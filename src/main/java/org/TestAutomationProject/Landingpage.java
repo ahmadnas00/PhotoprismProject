@@ -46,6 +46,7 @@ public class Landingpage {
     private By firstImageHover = By.cssSelector("div[data-index='0']");
     private By QRButton = By.className("action-qr");
     private By QRImage = By.cssSelector(".qr-container img");
+    private By UID = By.cssSelector("div.result.card.is-photo");
 
 
     public Landingpage(WebDriver driver) {
@@ -416,4 +417,8 @@ public class Landingpage {
         return true;
     }
 
+    public String getUID() {
+        WebElement element = driver.findElement(UID);
+        return element.getAttribute("data-uid");
+    }
 }
