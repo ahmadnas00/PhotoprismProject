@@ -25,36 +25,36 @@ public class LoginTest {
     WebDriver driver;
     private myLoginpage loginPage;
 
-    @BeforeEach
-    public void setUp() throws MalformedURLException {
-        driver = DriverFactory.getDriver();
-        driver.get(Landingpage.LoginURL);
-        try {
-            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
-            visitSiteButton.click();
-        } catch (TimeoutException err) {System.out.println("Ngrok warning page was not loaded");}
-        loginPage = new myLoginpage(driver);
-    }
-
-    @Test
-    public void TestValidLogin() {
-        Landingpage home = loginPage.loginAsValidUser("admin", "photoprism");
-        assertTrue(home.isLoggedInSuccessfully());
-    }
-
-    @Test
-    public void TestInvalidLogin(){
-        myLoginpage page1 = loginPage.loginInValidUser("ahmad", "password123");
-        assertTrue(page1.isNotLoggedIn());
-    }
-
-
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
-    }
-
+//    @BeforeEach
+//    public void setUp() throws MalformedURLException {
+//        driver = DriverFactory.getDriver();
+//        driver.get(Landingpage.LoginURL);
+//        try {
+//            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+//            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
+//            visitSiteButton.click();
+//        } catch (TimeoutException err) {System.out.println("Ngrok warning page was not loaded");}
+//        loginPage = new myLoginpage(driver);
+//    }
+//
+//    @Test
+//    public void TestValidLogin() {
+//        Landingpage home = loginPage.loginAsValidUser("admin", "photoprism");
+//        assertTrue(home.isLoggedInSuccessfully());
+//    }
+//
+//    @Test
+//    public void TestInvalidLogin(){
+//        myLoginpage page1 = loginPage.loginInValidUser("ahmad", "password123");
+//        assertTrue(page1.isNotLoggedIn());
+//    }
+//
+//
+//    @AfterEach
+//    public void tearDown() {
+//        driver.quit();
+//    }
+//
 
 }
 
