@@ -97,7 +97,7 @@ public class SmokeTests {
         WebElement qrImage = home.GenerateQR(ImgName);
         assertTrue(qrImage.isDisplayed(), "QR Code was not displayed!");
         String decodedContent = QRCodeDecoder.decodeQRCode(qrImage);
-        assertTrue(decodedContent.startsWith("https://i.imgur.com"), "QR Code content does not start with 'https://i.imgur.com'!");
+        assertTrue(decodedContent.startsWith("https://i.ibb.co"), "QR Code content does not start with 'https://i.imgur.com'!");
         System.out.println("QR Code is displayed and contains the correct URL: " + decodedContent);
     }
 

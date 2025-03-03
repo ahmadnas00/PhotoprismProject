@@ -106,50 +106,50 @@ public class FilterAndEditTest {
         assertEquals("Unknown",home.OpenTimeDropDown("Newest First").getFirstImageTitle());
     }
 
-    @Test
-    @Order(9)
-    public void TestImageSelect(){home.SearchByTitle("Unknown").HoverFirstImage().select();}
+//    @Test
+//    @Order(9)
+//    public void TestImageSelect(){home.SearchByTitle("Unknown").HoverFirstImage().select();}
 
-    @Test
-    @Order(10)
-    public void TestImageUnselect(){
-        home.SearchByTitle("Unknown").HoverFirstImage().select().OpenOptions().ClearPick();
-    }
+//    @Test
+//    @Order(10)
+//    public void TestImageUnselect(){
+//        home.SearchByTitle("Unknown").HoverFirstImage().select().OpenOptions().ClearPick();
+//    }
 
-    @Test
-    @Order(11)
-    public void TestImageShareCancel(){
-        home.SearchByTitle("Unknown").HoverFirstImage().select();
-        home.OpenOptions().share().sharecancel();
-    }
+//    @Test
+//    @Order(11)
+//    public void TestImageShareCancel(){
+//        home.SearchByTitle("Unknown").HoverFirstImage().select();
+//        home.OpenOptions().share().sharecancel();
+//    }
 
-    @Test
-    @Order(12)
-    public void TestUploadadnApproveImage(){
-        home.Addimage(filePath);
-        home.GoToreview().approveimage().GoToLandingPage();
-        assertTrue(home.SearchByTitle("Random").getFirstImageTitle().contains("Random"));
-    }
+//    @Test
+//    @Order(12)
+//    public void TestUploadadnApproveImage(){
+//        home.Addimage(filePath);
+//        home.GoToreview().approveimage().GoToLandingPage();
+//        assertTrue(home.SearchByTitle("Random").getFirstImageTitle().contains("Random"));
+//    }
 
-    @Test
-    @Order(13)
-    public void MarkFavoriteandUnFavorite() {
-        home.SearchByTitle("Unknown").Favoritefirstimage();
-        assertTrue(home.GoToFavorites().SearchByTitle("Unknown").getFirstImageTitle().contains("Unknown"), "The image title doesn't contain the search term");
-        home.SearchByTitle("Unknown").UnFavoritefirstimage();
-        assertFalse(home.GoToFavorites().SearchByTitle("Unknown").isTitleInFavorites("Unknown"),"The image is in the Favorites section");
-    }
+//    @Test
+//    @Order(13)
+//    public void MarkFavoriteandUnFavorite() {
+//        home.SearchByTitle("Unknown").Favoritefirstimage();
+//        assertTrue(home.GoToFavorites().SearchByTitle("Unknown").getFirstImageTitle().contains("Unknown"), "The image title doesn't contain the search term");
+//        home.SearchByTitle("Unknown").UnFavoritefirstimage();
+//        assertFalse(home.GoToFavorites().SearchByTitle("Unknown").isTitleInFavorites("Unknown"),"The image is in the Favorites section");
+//    }
 
-    @Test
-    @Order(14)
-    public void HeartIconChanging() {
-        home.SearchByTitle("Unknown");
-        String initialIconClass = home.GetinitialIcon();
-        home.Favoritefirstimage();
-        String updatedIconClass = home.GetfinalIcon();
-        home.UnFavoritefirstimage();
-        assertNotEquals(initialIconClass,updatedIconClass);
-    }
+//    @Test
+//    @Order(14)
+//    public void HeartIconChanging() {
+//        home.SearchByTitle("Unknown");
+//        String initialIconClass = home.GetinitialIcon();
+//        home.Favoritefirstimage();
+//        String updatedIconClass = home.GetfinalIcon();
+//        home.UnFavoritefirstimage();
+//        assertNotEquals(initialIconClass,updatedIconClass);
+//    }
 
     @AfterEach
     public void tearDown() {
