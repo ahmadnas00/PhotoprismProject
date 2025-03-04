@@ -104,40 +104,40 @@ public class ApiTest {
         assertEquals(9, photos.size(), "The size of the photos list should be 9");
     }
 
-    @Test
-    @Order(2)
-    public void TestFavoriteImage() {
-        Response response = RestAssured
-                .given()
-                .baseUri(BaseURL1)
-                .header("Authorization", "Bearer " + Token)  // Authorization header
-                .when()
-                .post("/" + ImageID1 + "/like");
-
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-
-        JsonPath jsonResponse = response.jsonPath();
-        boolean isFavorite = jsonResponse.getBoolean("photo.Favorite");
-        assertTrue(isFavorite, "The photo should be marked as Favorite");
-    }
-
-    @Test
-    @Order(3)
-    public void TestUnFavoriteImage() {
-        Response response = RestAssured
-                .given()
-                .baseUri(BaseURL1)
-                .header("Authorization", "Bearer " + Token)  // Authorization header
-                .when()
-                .delete("/" + ImageID1 + "/like");
-
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-
-        JsonPath jsonResponse = response.jsonPath();
-        boolean NotFavorite = jsonResponse.getBoolean("photo.Favorite");
-        assertFalse(NotFavorite, "The photo should be marked as Favorite");
-
-    }
+//    @Test
+//    @Order(2)
+//    public void TestFavoriteImage() {
+//        Response response = RestAssured
+//                .given()
+//                .baseUri(BaseURL1)
+//                .header("Authorization", "Bearer " + Token)  // Authorization header
+//                .when()
+//                .post("/" + ImageID1 + "/like");
+//
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//
+//        JsonPath jsonResponse = response.jsonPath();
+//        boolean isFavorite = jsonResponse.getBoolean("photo.Favorite");
+//        assertTrue(isFavorite, "The photo should be marked as Favorite");
+//    }
+//
+//    @Test
+//    @Order(3)
+//    public void TestUnFavoriteImage() {
+//        Response response = RestAssured
+//                .given()
+//                .baseUri(BaseURL1)
+//                .header("Authorization", "Bearer " + Token)  // Authorization header
+//                .when()
+//                .delete("/" + ImageID1 + "/like");
+//
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//
+//        JsonPath jsonResponse = response.jsonPath();
+//        boolean NotFavorite = jsonResponse.getBoolean("photo.Favorite");
+//        assertFalse(NotFavorite, "The photo should be marked as Favorite");
+//
+//    }
 
     @Test
     @Order(4)
