@@ -106,6 +106,10 @@ public class SmokeTests {
 
 
         String savePath = System.getProperty("java.io.tmpdir") + "/qr_code.png";
+        File qrFile = new File(savePath);
+        if (qrFile.exists()) {
+            qrFile.delete();
+        }
         downloadImage(decodedContent, savePath);
         System.out.println("QR Code has been downloaded successfully: " + savePath);
         BufferedImage generatedQR = ImageIO.read(new File(savePath));
