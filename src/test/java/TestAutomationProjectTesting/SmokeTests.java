@@ -105,14 +105,7 @@ public class SmokeTests {
         System.out.println("QR Code is displayed and contains the correct URL: " + decodedContent);
 
 
-        String savePath = System.getProperty("java.io.tmpdir") + "/qr_code.png";
-        File qrFile = new File(savePath);
-        if (qrFile.exists()) {
-            qrFile.delete();
-        }
-        downloadImage(decodedContent, savePath);
-        System.out.println("QR Code has been downloaded successfully: " + savePath);
-        BufferedImage generatedQR = ImageIO.read(new File(savePath));
+        BufferedImage generatedQR = fetchImageFromURL(decodedContent);
         BufferedImage originalQR = ImageIO.read(new File("src/test/resources/Original_img.jpg"));
         assertTrue(compareImages(generatedQR, originalQR), "Generated QR Code does not match the original image!");
     }
@@ -146,5 +139,14 @@ public class SmokeTests {
             }
         }
         return true;
+    }
+
+    private BufferedImage fetchImageFromURL(String imageUrl) throws Exception {
+        URL url = new URL(imageUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("User-Agent", "Mozilla/5.0"); // Prevents blocking
+        InputStream inputStream = connection.getInputStream();
+        return ImageIO.read(inputStream); // Load the image into memory
     }
 }
