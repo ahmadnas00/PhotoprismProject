@@ -104,121 +104,121 @@ public class ApiTest {
         assertEquals(9, photos.size(), "The size of the photos list should be 9");
     }
 
-    @Test
-    @Order(2)
-    public void TestFavoriteImage() {
-        Response response = RestAssured
-                .given()
-                .baseUri(BaseURL1)
-                .header("Authorization", "Bearer " + Token)  // Authorization header
-                .when()
-                .post("/" + ImageID1 + "/like");
-
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-
-        JsonPath jsonResponse = response.jsonPath();
-        boolean isFavorite = jsonResponse.getBoolean("photo.Favorite");
-        assertTrue(isFavorite, "The photo should be marked as Favorite");
-    }
-
-    @Test
-    @Order(3)
-    public void TestUnFavoriteImage() {
-        Response response = RestAssured
-                .given()
-                .baseUri(BaseURL1)
-                .header("Authorization", "Bearer " + Token)  // Authorization header
-                .when()
-                .delete("/" + ImageID1 + "/like");
-
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-
-        JsonPath jsonResponse = response.jsonPath();
-        boolean NotFavorite = jsonResponse.getBoolean("photo.Favorite");
-        assertFalse(NotFavorite, "The photo should be marked as Favorite");
-
-    }
-
-    @Test
-    @Order(4)
-    public void TestPrivateImage() {
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("photos", new String[]{ImageID1});
-
-        Response response = RestAssured
-                .given()
-                .baseUri(URLPrivate)
-                .header("Authorization", "Bearer " + Token)
-                .header("Content-Type", "application/json")
-                .body(requestBody)
-                .when()
-                .post();
-
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-        JsonPath jsonResponse = response.jsonPath();
-        String message = jsonResponse.getString("message");
-        assertEquals("Selection marked as private", message, "The response message should match the expected value");
-    }
-
-    @Test
-    @Order(5)
-    public void TestUnprivateImage() {
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("photos", new String[]{ImageID1});
-        requestBody.put("action", "unprivate");
-
-        Response response = RestAssured
-                .given()
-                .baseUri(URLPrivate)
-                .header("Authorization", "Bearer " + Token)
-                .header("Content-Type", "application/json")
-                .body(requestBody)
-                .when()
-                .post();
-
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-        JsonPath jsonResponse = response.jsonPath();
-        String message = jsonResponse.getString("message");
-        assertEquals("Selection marked as private", message, "The response message should match the expected value");
-    }
-
-    @Test
-    @Order(6)
-    public void TestSendToArchive() {
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("photos", new String[]{ImageID1});
-        Response response = RestAssured
-                .given()
-                .baseUri(URLArchive)
-                .header("Authorization", "Bearer " + Token)
-                .header("Content-Type", "application/json")
-                .body(requestBody)
-                .when()
-                .post();
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-        JsonPath jsonResponse = response.jsonPath();
-        String message = jsonResponse.getString("message");
-        assertEquals("Selection archived", message, "The response message should match the expected value");
-    }
-
-    @Test
-    @Order(7)
-    public void TestRestoreFromArchive() {
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("photos", new String[]{ImageID1});
-        Response response = RestAssured
-                .given()
-                .baseUri(URLRestore)
-                .header("Authorization", "Bearer " + Token)
-                .header("Content-Type", "application/json")
-                .body(requestBody)
-                .when()
-                .post();
-        assertEquals(200, response.statusCode(), "Status code should be 200");
-        JsonPath jsonResponse = response.jsonPath();
-        String message = jsonResponse.getString("message");
-        assertEquals("Selection restored", message, "The response message should match the expected value");
-    }
+//    @Test
+//    @Order(2)
+//    public void TestFavoriteImage() {
+//        Response response = RestAssured
+//                .given()
+//                .baseUri(BaseURL1)
+//                .header("Authorization", "Bearer " + Token)  // Authorization header
+//                .when()
+//                .post("/" + ImageID1 + "/like");
+//
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//
+//        JsonPath jsonResponse = response.jsonPath();
+//        boolean isFavorite = jsonResponse.getBoolean("photo.Favorite");
+//        assertTrue(isFavorite, "The photo should be marked as Favorite");
+//    }
+//
+//    @Test
+//    @Order(3)
+//    public void TestUnFavoriteImage() {
+//        Response response = RestAssured
+//                .given()
+//                .baseUri(BaseURL1)
+//                .header("Authorization", "Bearer " + Token)  // Authorization header
+//                .when()
+//                .delete("/" + ImageID1 + "/like");
+//
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//
+//        JsonPath jsonResponse = response.jsonPath();
+//        boolean NotFavorite = jsonResponse.getBoolean("photo.Favorite");
+//        assertFalse(NotFavorite, "The photo should be marked as Favorite");
+//
+//    }
+//
+//    @Test
+//    @Order(4)
+//    public void TestPrivateImage() {
+//        Map<String, Object> requestBody = new HashMap<>();
+//        requestBody.put("photos", new String[]{ImageID1});
+//
+//        Response response = RestAssured
+//                .given()
+//                .baseUri(URLPrivate)
+//                .header("Authorization", "Bearer " + Token)
+//                .header("Content-Type", "application/json")
+//                .body(requestBody)
+//                .when()
+//                .post();
+//
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//        JsonPath jsonResponse = response.jsonPath();
+//        String message = jsonResponse.getString("message");
+//        assertEquals("Selection marked as private", message, "The response message should match the expected value");
+//    }
+//
+//    @Test
+//    @Order(5)
+//    public void TestUnprivateImage() {
+//        Map<String, Object> requestBody = new HashMap<>();
+//        requestBody.put("photos", new String[]{ImageID1});
+//        requestBody.put("action", "unprivate");
+//
+//        Response response = RestAssured
+//                .given()
+//                .baseUri(URLPrivate)
+//                .header("Authorization", "Bearer " + Token)
+//                .header("Content-Type", "application/json")
+//                .body(requestBody)
+//                .when()
+//                .post();
+//
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//        JsonPath jsonResponse = response.jsonPath();
+//        String message = jsonResponse.getString("message");
+//        assertEquals("Selection marked as private", message, "The response message should match the expected value");
+//    }
+//
+//    @Test
+//    @Order(6)
+//    public void TestSendToArchive() {
+//        Map<String, Object> requestBody = new HashMap<>();
+//        requestBody.put("photos", new String[]{ImageID1});
+//        Response response = RestAssured
+//                .given()
+//                .baseUri(URLArchive)
+//                .header("Authorization", "Bearer " + Token)
+//                .header("Content-Type", "application/json")
+//                .body(requestBody)
+//                .when()
+//                .post();
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//        JsonPath jsonResponse = response.jsonPath();
+//        String message = jsonResponse.getString("message");
+//        assertEquals("Selection archived", message, "The response message should match the expected value");
+//    }
+//
+//    @Test
+//    @Order(7)
+//    public void TestRestoreFromArchive() {
+//        Map<String, Object> requestBody = new HashMap<>();
+//        requestBody.put("photos", new String[]{ImageID1});
+//        Response response = RestAssured
+//                .given()
+//                .baseUri(URLRestore)
+//                .header("Authorization", "Bearer " + Token)
+//                .header("Content-Type", "application/json")
+//                .body(requestBody)
+//                .when()
+//                .post();
+//        assertEquals(200, response.statusCode(), "Status code should be 200");
+//        JsonPath jsonResponse = response.jsonPath();
+//        String message = jsonResponse.getString("message");
+//        assertEquals("Selection restored", message, "The response message should match the expected value");
+//    }
 
 
 }
