@@ -75,25 +75,25 @@ public class SmokeTests {
     }
 
 
-//    @Test
-//    public void TestFilterByCountry(){
-//        assertEquals(ImgName2,home.OpenCountryDropDown("France").getFirstImageTitle());
-//    }
-//
-//    @Test
-//    public void TestFilterByCategory(){
-//        assertEquals(ImgName2,home.OpenCategoryDropDown("Reptile").getFirstImageTitle());
-//    }
-//
-//    @Test
-//    public void TestGalleryEmpty() {
-//        assertFalse(home.isGalleryEmpty());
-//    }
-//
-//    @Test
-//    public void TestReloadButton(){
-//        assertTrue(home.ClickReloadButton().IsUpdateToastVisible());
-//    }
+    @Test
+    public void TestFilterByCountry(){
+        assertEquals(ImgName2,home.OpenCountryDropDown("France").getFirstImageTitle());
+    }
+
+    @Test
+    public void TestFilterByCategory(){
+        assertEquals(ImgName2,home.OpenCategoryDropDown("Reptile").getFirstImageTitle());
+    }
+
+    @Test
+    public void TestGalleryEmpty() {
+        assertFalse(home.isGalleryEmpty());
+    }
+
+    @Test
+    public void TestReloadButton(){
+        assertTrue(home.ClickReloadButton().IsUpdateToastVisible());
+    }
 
     @Test
     public void TestQRFeature() throws Exception {
