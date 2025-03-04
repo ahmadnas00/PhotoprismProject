@@ -20,4 +20,10 @@ public class QRCodeDecoder {
         Result qrResult = new MultiFormatReader().decode(bitmap);
         return qrResult.getText(); // Return the extracted QR content
     }
+
+
+
+
+
+
 }
