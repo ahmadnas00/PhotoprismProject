@@ -75,28 +75,29 @@ public class SmokeTests {
     }
 
 
-//    @Test
-//    public void TestFilterByCountry(){
-//        assertEquals(ImgName2,home.OpenCountryDropDown("France").getFirstImageTitle());
-//    }
-//
-//    @Test
-//    public void TestFilterByCategory(){
-//        assertEquals(ImgName2,home.OpenCategoryDropDown("Reptile").getFirstImageTitle());
-//    }
-//
-//    @Test
-//    public void TestGalleryEmpty() {
-//        assertFalse(home.isGalleryEmpty());
-//    }
-//
-//    @Test
-//    public void TestReloadButton(){
-//        assertTrue(home.ClickReloadButton().IsUpdateToastVisible());
-//    }
+    @Test
+    public void TestFilterByCountry(){
+        assertEquals(ImgName2,home.OpenCountryDropDown("France").getFirstImageTitle());
+    }
+
+    @Test
+    public void TestFilterByCategory(){
+        assertEquals(ImgName2,home.OpenCategoryDropDown("Reptile").getFirstImageTitle());
+    }
+
+    @Test
+    public void TestGalleryEmpty() {
+        assertFalse(home.isGalleryEmpty());
+    }
+
+    @Test
+    public void TestReloadButton(){
+        assertTrue(home.ClickReloadButton().IsUpdateToastVisible());
+    }
 
     @Test
     public void TestQRFeature() throws Exception {
+
         WebElement qrImage = home.GenerateQR(ImgName);
         assertTrue(qrImage.isDisplayed(), "QR Code was not displayed!");
         String decodedContent = QRCodeDecoder.decodeQRCode(qrImage);
@@ -104,19 +105,11 @@ public class SmokeTests {
         System.out.println("QR Code is displayed and contains the correct URL: " + decodedContent);
 
 
-
         String savePath = System.getProperty("java.io.tmpdir") + "/qr_code.png";
         downloadImage(decodedContent, savePath);
-
         System.out.println("QR Code has been downloaded successfully: " + savePath);
-
-        // Load the generated QR image from temp directory
         BufferedImage generatedQR = ImageIO.read(new File(savePath));
-
-        // Load the original image from src/test/resources (Works in GitHub Actions)
         BufferedImage originalQR = ImageIO.read(new File("src/test/resources/Original_img.jpg"));
-
-        // Compare images
         assertTrue(compareImages(generatedQR, originalQR), "Generated QR Code does not match the original image!");
     }
 
@@ -124,7 +117,6 @@ public class SmokeTests {
     public void tearDown() {
         driver.quit();
     }
-
 
     public void downloadImage(String imageUrl, String savePath) throws Exception {
         URL url = new URL(imageUrl);
@@ -151,6 +143,4 @@ public class SmokeTests {
         }
         return true;
     }
-
-
 }
