@@ -97,18 +97,20 @@ public class SmokeTests {
 
     @Test
     public void TestQRFeature() throws Exception {
-
         WebElement qrImage = home.GenerateQR(ImgName);
         assertTrue(qrImage.isDisplayed(), "QR Code was not displayed!");
+
         String decodedContent = QRCodeDecoder.decodeQRCode(qrImage);
-        assertTrue(decodedContent.startsWith("https://i.ibb.co"), "QR Code content does not start with 'https://i.imgur.com'!");
+        assertTrue(decodedContent.startsWith("https://i.ibb.co"), "QR Code content does not start with 'https://i.ibb.co'!");
         System.out.println("QR Code is displayed and contains the correct URL: " + decodedContent);
 
 
+        testInternetAccess(decodedContent);
         BufferedImage generatedQR = fetchImageFromURL(decodedContent);
         BufferedImage originalQR = ImageIO.read(new File("src/test/resources/Original_img.jpg"));
         assertTrue(compareImages(generatedQR, originalQR), "Generated QR Code does not match the original image!");
     }
+
 
     @AfterEach
     public void tearDown() {
@@ -148,5 +150,18 @@ public class SmokeTests {
         connection.setRequestProperty("User-Agent", "Mozilla/5.0"); // Prevents blocking
         InputStream inputStream = connection.getInputStream();
         return ImageIO.read(inputStream); // Load the image into memory
+    }
+
+    private void testInternetAccess(String imageUrl) throws Exception {
+        try {
+            URL url = new URL(imageUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("HEAD"); // Just checks if the URL is reachable
+            connection.setConnectTimeout(5000); // 5 seconds timeout
+            connection.connect();
+            System.out.println("Successfully connected to " + imageUrl);
+        } catch (Exception e) {
+            throw new Exception("Unable to reach image URL: " + imageUrl, e);
+        }
     }
 }
