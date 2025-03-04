@@ -10,7 +10,7 @@ import java.util.List;
 public class Landingpage {
 
     //public static final String URL = "http://localhost:2342/";
-   public static final String URL = "https://789f-83-229-24-161.ngrok-free.app/";
+   public static final String URL = "https://cbbc-83-229-24-161.ngrok-free.app/";
 
 
     public static final String baseURL = URL + "library/browse";
