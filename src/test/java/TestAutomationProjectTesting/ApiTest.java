@@ -58,30 +58,30 @@ public class ApiTest {
         return token;
     }
 
-    @BeforeAll
-    public static void setUpData()throws MalformedURLException {
-        driver = DriverFactory.getDriver();
-        driver.manage().window().maximize();
-        driver.get(Landingpage.LoginURL);
-        try {
-            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
-            visitSiteButton.click();
-        } catch (TimeoutException err) {}
-        loginPage = new myLoginpage(driver);
-        home = loginPage.loginAsValidUser("admin", "photoprism");
-        try {
-            Thread.sleep(2000); // Wait for 2 seconds
-        } catch (InterruptedException e) {
-            e.printStackTrace(); // Handle the exception
-        }
-        driver.get(Landingpage.LibraryURL);
-        mylibrary = new Library(driver);
-        mylibrary.StartIndexing();
-        driver.get(Landingpage.URL);
-        ImageID1 = home.SearchByTitle("Unknown").getUID();
-        driver.quit();
-    }
+//    @BeforeAll
+//    public static void setUpData()throws MalformedURLException {
+//        driver = DriverFactory.getDriver();
+//        driver.manage().window().maximize();
+//        driver.get(Landingpage.LoginURL);
+//        try {
+//            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+//            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
+//            visitSiteButton.click();
+//        } catch (TimeoutException err) {}
+//        loginPage = new myLoginpage(driver);
+//        home = loginPage.loginAsValidUser("admin", "photoprism");
+//        try {
+//            Thread.sleep(2000); // Wait for 2 seconds
+//        } catch (InterruptedException e) {
+//            e.printStackTrace(); // Handle the exception
+//        }
+//        driver.get(Landingpage.LibraryURL);
+//        mylibrary = new Library(driver);
+//        mylibrary.StartIndexing();
+//        driver.get(Landingpage.URL);
+//        ImageID1 = home.SearchByTitle("Unknown").getUID();
+//        driver.quit();
+//    }
 
 
     @BeforeEach
