@@ -117,17 +117,7 @@ public class SmokeTests {
         driver.quit();
     }
 
-    public void downloadImage(String imageUrl, String savePath) throws Exception {
-        URL url = new URL(imageUrl);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0"); // Prevents some servers from blocking the request
 
-        try (InputStream inputStream = connection.getInputStream()) {
-            BufferedImage image = ImageIO.read(inputStream);
-            ImageIO.write(image, "png", new File(savePath));
-        }
-    }
 
     public boolean compareImages(BufferedImage imgA, BufferedImage imgB) {
         if (imgA.getWidth() != imgB.getWidth() || imgA.getHeight() != imgB.getHeight()) {

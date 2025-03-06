@@ -58,30 +58,30 @@ public class ApiTest {
         return token;
     }
 
-//    @BeforeAll
-//    public static void setUpData()throws MalformedURLException {
-//        driver = DriverFactory.getDriver();
-//        driver.manage().window().maximize();
-//        driver.get(Landingpage.LoginURL);
-//        try {
-//            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
-//            visitSiteButton.click();
-//        } catch (TimeoutException err) {}
-//        loginPage = new myLoginpage(driver);
-//        home = loginPage.loginAsValidUser("admin", "photoprism");
-//        try {
-//            Thread.sleep(2000); // Wait for 2 seconds
-//        } catch (InterruptedException e) {
-//            e.printStackTrace(); // Handle the exception
-//        }
-//        driver.get(Landingpage.LibraryURL);
-//        mylibrary = new Library(driver);
-//        mylibrary.StartIndexing();
-//        driver.get(Landingpage.URL);
-//        ImageID1 = home.SearchByTitle("Unknown").getUID();
-//        driver.quit();
-//    }
+    @BeforeAll
+    public static void setUpData()throws MalformedURLException {
+        driver = DriverFactory.getDriver();
+        driver.manage().window().maximize();
+        driver.get(Landingpage.LoginURL);
+        try {
+            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
+            visitSiteButton.click();
+        } catch (TimeoutException err) {}
+        loginPage = new myLoginpage(driver);
+        home = loginPage.loginAsValidUser("admin", "photoprism");
+        try {
+            Thread.sleep(2000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // Handle the exception
+        }
+        driver.get(Landingpage.LibraryURL);
+        mylibrary = new Library(driver);
+        mylibrary.StartIndexing();
+        driver.get(Landingpage.URL);
+        ImageID1 = home.SearchByTitle("Unknown").getUID();
+        driver.quit();
+    }
 
 
     @BeforeEach
@@ -104,40 +104,40 @@ public class ApiTest {
         assertEquals(9, photos.size(), "The size of the photos list should be 9");
     }
 
-//    @Test
-//    @Order(2)
-//    public void TestFavoriteImage() {
-//        Response response = RestAssured
-//                .given()
-//                .baseUri(BaseURL1)
-//                .header("Authorization", "Bearer " + Token)  // Authorization header
-//                .when()
-//                .post("/" + ImageID1 + "/like");
-//
-//        assertEquals(200, response.statusCode(), "Status code should be 200");
-//
-//        JsonPath jsonResponse = response.jsonPath();
-//        boolean isFavorite = jsonResponse.getBoolean("photo.Favorite");
-//        assertTrue(isFavorite, "The photo should be marked as Favorite");
-//    }
-//
-//    @Test
-//    @Order(3)
-//    public void TestUnFavoriteImage() {
-//        Response response = RestAssured
-//                .given()
-//                .baseUri(BaseURL1)
-//                .header("Authorization", "Bearer " + Token)  // Authorization header
-//                .when()
-//                .delete("/" + ImageID1 + "/like");
-//
-//        assertEquals(200, response.statusCode(), "Status code should be 200");
-//
-//        JsonPath jsonResponse = response.jsonPath();
-//        boolean NotFavorite = jsonResponse.getBoolean("photo.Favorite");
-//        assertFalse(NotFavorite, "The photo should be marked as Favorite");
-//
-//    }
+    @Test
+    @Order(2)
+    public void TestFavoriteImage() {
+        Response response = RestAssured
+                .given()
+                .baseUri(BaseURL1)
+                .header("Authorization", "Bearer " + Token)  // Authorization header
+                .when()
+                .post("/" + ImageID1 + "/like");
+
+        assertEquals(200, response.statusCode(), "Status code should be 200");
+
+        JsonPath jsonResponse = response.jsonPath();
+        boolean isFavorite = jsonResponse.getBoolean("photo.Favorite");
+        assertTrue(isFavorite, "The photo should be marked as Favorite");
+    }
+
+    @Test
+    @Order(3)
+    public void TestUnFavoriteImage() {
+        Response response = RestAssured
+                .given()
+                .baseUri(BaseURL1)
+                .header("Authorization", "Bearer " + Token)  // Authorization header
+                .when()
+                .delete("/" + ImageID1 + "/like");
+
+        assertEquals(200, response.statusCode(), "Status code should be 200");
+
+        JsonPath jsonResponse = response.jsonPath();
+        boolean NotFavorite = jsonResponse.getBoolean("photo.Favorite");
+        assertFalse(NotFavorite, "The photo should be marked as Favorite");
+
+    }
 
     @Test
     @Order(4)

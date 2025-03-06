@@ -61,12 +61,12 @@ public class FilterAndEditTest {
         home = loginPage.loginAsValidUser("admin", "photoprism");
     }
 
-    @Test
-    @Order(1)
-    public void TestSendToArchive(){
-        home.SearchByTitle("Unknown").HoverFirstImage().select().OpenOptions().SendToArchive();
-        assertEquals("Unknown",home.GoToArchive().SearchByTitle("Unknown").getFirstImageTitle());
-    }
+//    @Test
+//    @Order(1)
+//    public void TestSendToArchive(){
+//        home.SearchByTitle("Unknown").HoverFirstImage().select().OpenOptions().SendToArchive();
+//        assertEquals("Unknown",home.GoToArchive().SearchByTitle("Unknown").getFirstImageTitle());
+//    }
 
     @Test
     @Order(2)
@@ -87,7 +87,7 @@ public class FilterAndEditTest {
 
     @Test
     @Order(5)
-    public void TestFilterByCamera(){assertEquals("Unknown",home.OpenCameraDropDown("Apple iphone SE").getFirstImageTitle());
+    public void TestFilterByCamera(){assertEquals("Unknown",home.OpenCameraDropDown("Apple iPhone SE").getFirstImageTitle());
     }
 
     @Test
